@@ -1,42 +1,79 @@
 import streamlit as st
+from PIL import Image
 import os
 
-st.set_page_config(layout="wide")
+# Paths
+ASSETS_DIR = "assets"
+BACKGROUND = os.path.join(ASSETS_DIR, "background.jpg")
+PLACEHOLDER = os.path.join(ASSETS_DIR, "placeholder.jpg")
 
-# Background CSS
-st.markdown(
-    f"""
+# CSS for background and hover glow
+st.markdown(f"""
     <style>
     .stApp {{
-        background: url('assets/background.jpg') no-repeat center center fixed;
+        background-image: url("{BACKGROUND}");
         background-size: cover;
+        background-attachment: fixed;
     }}
     .sacramental-img {{
-        transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease;
         border-radius: 12px;
     }}
     .sacramental-img:hover {{
-        transform: scale(1.05);
-        box-shadow: 0 0 20px rgba(255, 255, 200, 0.6);
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
     }}
     </style>
-    """,
-    unsafe_allow_html=True
-)
+""", unsafe_allow_html=True)
+
+# Sacramentals list
+sacramentals = [
+    "holy_water",
+    "rosary",
+    "scapular",
+    "medal",
+    "crucifix",
+    "palms",
+    "blessed_salt",
+    "holy_oil",
+    "incense",
+    "candle",
+    "sign_of_the_cross",
+    "blessing",
+    "chaplet",
+    "bible",
+    "holy_card",
+    "sacramentals_of_the_dead",
+    "pilgrimage_item",
+    "holy_bells",
+    "holy_images",
+    "liturgical_vestments",
+    "holy_doors",
+    "ashes",
+    "blessed_medals",
+    "relic"
+]
+
+def safe_image_load(path):
+    """Return a safe image path or fallback."""
+    if os.path.exists(path):
+        try:
+            Image.open(path)  # validate image
+            return path
+        except:
+            return PLACEHOLDER
+    else:
+        return PLACEHOLDER
 
 st.title("Catholic Sacramentals Encyclopedia")
 
-# List of sacramentals
-sacramentals = [
-    "holy_water", "scapular", "rosary", "medal", "crucifix",
-    "blessed_oil", "palm_branch", "candle", "incense",
-    "relic", "holy_card", "rosary_ring"
-]
-
-# Display images and descriptions
+# Loop through sacramentals
 for item in sacramentals:
-    img_path = os.path.join("assets", f"{item}.jpg")
-    if not os.path.exists(img_path) or os.path.getsize(img_path) == 0:
-        img_path = os.path.join("assets", "placeholder.jpg")
-    st.image(img_path, caption=item.replace("_", " ").title(), use_container_width=True)
-    st.write(f"**{item.replace('_', ' ').title()}**: Detailed and rich historical description coming soon.")
+    img_path = os.path.join(ASSETS_DIR, f"{item}.jpg")
+    safe_path = safe_image_load(img_path)
+    st.markdown(
+        f'<img src="{safe_path}" class="sacramental-img" width="100%">',
+        unsafe_allow_html=True
+    )
+    st.write(f"### {item.replace('_', ' ').title()}")
+    st.write("Extensive description here. Replace with real content.")
