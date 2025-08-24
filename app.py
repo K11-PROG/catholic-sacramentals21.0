@@ -1,67 +1,185 @@
 import streamlit as st
+import base64
 import os
+from pathlib import Path
 
-# Set up assets directory
-ASSETS_DIR = "assets"
+# ---------- CONFIG ----------
+st.set_page_config(page_title="Catholic Sacramentals", layout="wide")
 
-# Background image CSS (handled separately, not included as a displayed item)
-background_path = os.path.join(ASSETS_DIR, "background.jpg")
-if os.path.exists(background_path):
-    st.markdown(
-        f"""
-        <style>
-        .stApp {{
-            background: url('{background_path}');
-            background-size: cover;
-            background-position: center;
-        }}
-        img:hover {{
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-            transition: all 0.3s ease-in-out;
-        }}
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
+ASSETS_DIR = Path("assets")
+# Supported image extensions to try in order
+EXTS = [".jpg", ".jpeg", ".png", ".webp"]
 
-# Extensive, descriptive content for each sacramental
-sacramentals = {
-    "ashes": "Ashes, traditionally blessed on Ash Wednesday, symbolize penitence and mortality. Christians receive a cross of ashes on their forehead as a call to conversion. Historically, this practice dates back to the early centuries of the Church, when public penitents wore sackcloth and ashes as a sign of repentance.",
-    "bible": "The Holy Bible is the inspired Word of God and the foundational text of the Christian faith. Catholic editions include the deuterocanonical books. The Bible has been venerated, read aloud in liturgies, and preserved with care since the first centuries. Illuminated manuscripts and printed editions testify to its enduring reverence.",
-    "blessed_medals": "Blessed medals, such as the Miraculous Medal or St. Benedict Medal, are sacramentals invoking God's protection and the intercession of saints. These medals carry prayers and symbols often tied to apparitions or monastic traditions. They became particularly popular from the 19th century onward, emphasizing devotion and faith.",
-    "blessed_salt": "Blessed salt is sacramentally blessed to repel evil and remind the faithful of Christ’s words: 'You are the salt of the earth.' Historically used in baptisms and exorcisms, its roots go back to the early Church and the Old Testament, where salt was a symbol of covenant and purification.",
-    "blessing": "Blessings, given by clergy, sanctify people, objects, or places, invoking God’s favor. This practice stems from Jewish traditions and early Christianity, when bishops and priests blessed homes, fields, and individuals. Blessings remind the faithful that all creation is meant for God’s glory.",
-    "candle": "Blessed candles are a sign of Christ as the light of the world. Used during liturgies, processions, and at home, they have been a staple of Christian worship since the earliest centuries. Candlemas (Feast of the Presentation) especially highlights their importance. They remind us of vigilance and prayer.",
-    "chaplet": "Chaplets are structured prayers, often using beads, such as the Divine Mercy Chaplet. Inspired by the Rosary, these devotions grew during the Middle Ages, providing the faithful with ways to meditate on Christ’s mysteries and the lives of the saints. They encourage rhythmic and contemplative prayer.",
-    "crucifix": "A crucifix depicts Christ on the Cross, emphasizing His sacrifice. Crucifixes have been central to Catholic worship since the early Church, adorning altars and homes. They serve as a visual reminder of redemption and God's boundless love, often blessed to bring spiritual protection.",
-    "holy_bells": "Holy bells, often blessed, call the faithful to prayer, mark sacred moments, and sometimes are rung during exorcisms. In medieval Europe, bells were believed to drive away storms and evil. Their ringing still resonates in churches worldwide, linking heaven and earth.",
-    "holy_card": "Holy cards are small devotional images, often with prayers. They became popular in the 16th century as printing spread. Cards depict saints, biblical scenes, or prayers and are treasured for personal devotion, reminders of faith, and gifts of encouragement.",
-    "holy_doors": "Holy Doors, opened during Jubilee Years, symbolize extraordinary grace and entry into God’s mercy. Pilgrims crossing these doors receive indulgences. The tradition dates back to the 15th century at St. Peter’s Basilica, spreading to cathedrals worldwide.",
-    "holy_images": "Sacred images, icons, and statues aid devotion and recall the Incarnation—God made visible. From catacomb frescoes to Renaissance art, holy images have always been central in Catholic life, teaching and inspiring the faithful while lifting hearts to heaven.",
-    "holy_oil": "Sacred oils (chrism, oil of catechumens, oil of the sick) are consecrated annually at the Chrism Mass. They are used in sacraments like Baptism, Confirmation, Holy Orders, and Anointing of the Sick. Their use dates back to apostolic times and signifies the Holy Spirit’s action.",
-    "holy_water": "Holy water recalls Baptism and is used for blessing, protection, and exorcism. The practice of blessing water dates to the early Church and is rooted in Jewish purification rites. Fonts at church entrances invite the faithful to renew their baptismal promises.",
-    "incense": "Incense, used in liturgies, symbolizes prayer rising to God. Mentioned in the Old and New Testaments, incense adds solemnity and sanctity to worship. The sweet-smelling smoke honors sacred spaces and objects, echoing ancient temple worship.",
-    "liturgical_vestments": "Liturgical vestments, worn by clergy, signify roles and reverence. Their styles evolved from Roman garments, with colors and forms expressing the seasons and feasts. Each piece, from alb to chasuble, carries symbolic meaning and recalls centuries of tradition.",
-    "medal": "Medals, whether depicting saints or sacred mysteries, are tangible signs of devotion. Beyond blessed medals like St. Benedict’s, they often commemorate pilgrimages or sacraments. They serve as reminders of faith and channels of grace.",
-    "palms": "Blessed palms, distributed on Palm Sunday, recall Christ’s triumphal entry into Jerusalem. They are kept in homes as sacramentals, often woven into crosses. Their use is ancient, linking liturgy to biblical events and popular piety.",
-    "pilgrimage_item": "Objects brought from pilgrimage sites, such as water, stones, or cloths, remind the faithful of their spiritual journeys. Pilgrimages have been integral to Catholic life since the earliest centuries, fostering conversion and renewal.",
-    "placeholder": "This placeholder represents where images and details will be added. It ensures the structure of the app remains intact while awaiting full content.",
-    "relic": "Relics are physical remains or belongings of saints, venerated as points of contact with the holy. Their veneration is rooted in the early Church, when Christians gathered at martyrs' tombs. Classified as first-, second-, or third-class, relics inspire faith and remind us of the communion of saints.",
-    "rosary": "The Rosary is a meditative prayer centered on the life of Christ and Mary. Originating in the Middle Ages, it combines vocal prayer and contemplation. Each bead represents prayerful rhythm, leading believers through the mysteries of faith.",
-    "sacramentals_of_the_dead": "Sacramentals for the dying include blessed candles, crucifixes, and prayers like the Litany of the Saints. They prepare the soul for its final journey, providing comfort and grace. These practices have roots in early Christian care for the dying.",
-    "sacapular": "The scapular, especially the Brown Scapular of Our Lady of Mount Carmel, is a sign of Marian devotion. Worn as a garment of grace, its origins trace back to the Carmelite Order in the 13th century. It symbolizes commitment to prayer and Christian living.",
-    "sign_of_the_cross": "The Sign of the Cross, traced on oneself, recalls the Trinity and redemption through Christ’s Cross. This ancient gesture dates back to the early Church and is used at the start and end of prayers, blessing daily life and actions."
+# The 24 sacramentals (exact, lowercase, underscores)
+ITEM_KEYS = [
+    "ashes", "bible", "blessed_medals", "blessed_salt", "blessing",
+    "candle", "chaplet", "crucifix", "holy_bells", "holy_card",
+    "holy_doors", "holy_images", "holy_oil", "holy_water", "incense",
+    "liturgical_vestments", "medal", "palms", "pilgrimage_item",
+    "relic", "rosary", "sacramentals_of_the_dead", "sacapular",
+    "sign_of_the_cross",
+]
+
+# ---------- DESCRIPTIONS (extensive but readable) ----------
+DESC = {
+    "ashes": "Ashes, blessed and imposed on Ash Wednesday, signify repentance and our mortality—“Remember you are dust…”. The custom echoes ancient Jewish and early Christian penitential practice and became universal in the medieval West. The cross traced on the forehead calls us to conversion and a renewed Lent.",
+    "bible": "The Holy Bible, inspired Word of God, is the Church’s foundational book of faith and worship. Catholic editions include the deuterocanon. From handwritten codices and illuminated manuscripts to print, the Church has preserved and proclaimed Scripture in liturgy and life for two millennia.",
+    "blessed_medals": "Blessed medals (e.g., Miraculous Medal, St. Benedict Medal) bear sacred images and prayers, asking God’s help and saints’ intercession. Their popularity surged in modern centuries, yet they reflect the Church’s ancient instinct to keep holy reminders close to daily life.",
+    "blessed_salt": "Blessed salt symbolizes covenant, preservation, and protection. Used historically in scrutinies for baptism and in exorcisms, it recalls Christ’s “You are the salt of the earth.” Sprinkled with faith, it’s a reminder that all creation is ordered to God’s praise.",
+    "blessing": "Blessings invoke God’s favor upon people, places, and things. Rooted in Scripture and the Church’s earliest worship, blessings set apart everyday life for divine purposes, acknowledging that every good is from the Lord and returns to Him in thanksgiving.",
+    "candle": "Blessed candles recall Christ the Light. From catacombs to Candlemas processions, candlelight marks Christian prayer, sacrament, and vigil. At home, a blessed candle symbolizes watchful hope and Christ’s presence amid darkness.",
+    "chaplet": "Chaplets are structured prayers on beads (e.g., Divine Mercy) that combine vocal prayer with meditation. Flourishing since the late medieval period, they help sanctify time and focus the heart on the mysteries of salvation.",
+    "crucifix": "The crucifix—Christ on the Cross—keeps before our eyes the Paschal Mystery. Venerated since the early centuries, it graces altars and homes as a sign of love stronger than death, a silent homily of mercy and redemption.",
+    "holy_bells": "Blessed bells summon the faithful, mark sacred moments, and—according to venerable custom—dispel fear. Medieval Christians rang church bells in storms and processions; their sound still calls hearts to prayer and praise.",
+    "holy_card": "Holy cards—small sacred images with prayers—proliferated with printing. Tucked into missals and wallets, they are “pocket icons” that teach, console, and invite us to imitate Christ and the saints.",
+    "holy_doors": "Holy Doors, opened during Jubilees since the 15th century, symbolize Christ the Gate of Mercy. Passing through with faith obtains special indulgences and renews the pilgrim heart for mission.",
+    "holy_images": "Icons, statues, and sacred art sprang from the Incarnation: the invisible God made visible in Christ. From catacomb frescoes to Renaissance altarpieces, images are windows that lift the mind to divine realities.",
+    "holy_oil": "Sacred oils—chrism, catechumens’, and the sick—are consecrated at the Chrism Mass. Since apostolic times, the Church has anointed in sacraments, invoking the Spirit’s healing, strengthening, and consecrating power.",
+    "holy_water": "Holy water recalls Baptism and is used to bless, to protect, and to dedicate spaces and lives to God. Flicked from a font or carried home in bottles, it is a humble conduit of grace.",
+    "incense": "Incense, a fragrant sign of prayer rising to God (cf. Ps 141:2), graces Christian liturgy from earliest times, echoing temple worship. Its smoke veils the holy with mystery and reverent joy.",
+    "liturgical_vestments": "From Roman garments grew the alb, stole, chasuble and more—vesture whose colors and forms proclaim seasons and feasts. Vestments are not costumes but signs of office and service in Christ.",
+    "medal": "Beyond particular devotions, medals commemorate sacraments and pilgrimages. Blessed and worn in faith, they’re daily reminders to “put on the Lord Jesus Christ” and live as His disciples.",
+    "palms": "Blessed palms recall Christ’s entry into Jerusalem. Kept in homes or woven into small crosses, they connect Palm Sunday’s hosannas with the Passion and our call to follow the Lord to Easter.",
+    "pilgrimage_item": "Tokens from holy places—water, stones, cloths—remember journeys of conversion. Since antiquity, Christian pilgrims have sought grace at tombs and shrines, returning as witnesses to hope.",
+    "relic": "Relics (first-, second-, third-class) are tangible links to the saints, venerated since the early Church at martyrs’ tombs. They spur imitation, draw us into the communion of saints, and magnify God’s wonders in His friends.",
+    "rosary": "The Rosary, perfected in the Middle Ages, weds vocal prayer with contemplation of Christ’s mysteries in Mary’s school. The gentle rhythm beads grace into daily life and anchors the soul in the Gospel.",
+    "sacramentals_of_the_dead": "For the dying, sacramentals—crucifix, candle, prayers—surround the Anointing and Viaticum with faith’s tenderness. Christians have kept such watch since the beginning, entrusting loved ones to the Lord.",
+    "sacapular": "The scapular (notably the Brown Scapular of Carmel) reflects a medieval monastic garment refashioned as a sign of Marian devotion and discipleship—an outward reminder to live the Gospel faithfully.",
+    "sign_of_the_cross": "Tracing the Cross while invoking the Trinity is one of Christianity’s oldest prayers. It marks us as Christ’s own and sanctifies our speaking, working, and suffering with His saving sign.",
 }
 
-st.title("Catholic Sacramentals Encyclopedia")
+# ---------- UTILITIES ----------
+def humanize(key: str) -> str:
+    return key.replace("_", " ").title()
 
-# Display sacramentals with hover effect
-for item, desc in sacramentals.items():
-    img_path = os.path.join(ASSETS_DIR, f"{item}.jpg")
-    if os.path.exists(img_path):
-        st.image(img_path, caption=item.replace("_", " ").title(), use_container_width=True)
-    else:
-        st.write(f"**{item.replace('_', ' ').title()}** - *Image placeholder*")
-    st.write(desc)
-    st.markdown("---")
+def first_existing(path_stem: Path) -> Path | None:
+    """Return first existing file among supported EXTS for a given stem."""
+    for ext in EXTS:
+        p = path_stem.with_suffix(ext)
+        if p.exists():
+            return p
+    return None
+
+def read_bytes(path: Path) -> bytes | None:
+    try:
+        with open(path, "rb") as f:
+            return f.read()
+    except Exception:
+        return None
+
+def b64_of(path: Path) -> str | None:
+    data = read_bytes(path)
+    return base64.b64encode(data).decode("utf-8") if data else None
+
+def img_data_uri(path: Path, fallback: Path) -> str:
+    """Return a data: URI for path or fallback if missing/unreadable."""
+    candidate = read_bytes(path)
+    if candidate:
+        # Try to guess mime by extension; browsers handle it fine
+        mime = "image/png" if path.suffix.lower() == ".png" else "image/jpeg"
+        return f"data:{mime};base64,{base64.b64encode(candidate).decode('utf-8')}"
+    # fallback
+    fb = read_bytes(fallback)
+    return f"data:image/jpeg;base64,{base64.b64encode(fb).decode('utf-8')}" if fb else ""
+
+# ---------- BACKGROUND (BASE64 CSS) ----------
+bg_file = first_existing(ASSETS_DIR / "background")
+ph_file = first_existing(ASSETS_DIR / "placeholder")  # global placeholder
+if ph_file is None:
+    # Ensure at least some placeholder exists to avoid broken UI
+    st.warning("Missing assets/placeholder.(jpg|png|webp). Please add one.")
+bg_uri = img_data_uri(bg_file, ph_file) if bg_file else (img_data_uri(ph_file, ph_file) if ph_file else "")
+
+st.markdown(
+    f"""
+    <style>
+      /* App background */
+      .stApp {{
+        background-image: linear-gradient(rgba(10,10,20,0.55), rgba(10,10,20,0.55)), url('{bg_uri}');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+      }}
+      /* Card & hover glow for images */
+      .sac-card {{
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.18);
+        border-radius: 16px;
+        padding: 16px;
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      }}
+      .sac-img {{
+        width: 100%;
+        border-radius: 12px;
+        display: block;
+        transition: transform .25s ease, filter .25s ease, box-shadow .25s ease;
+        box-shadow: 0 0 0 rgba(255,255,255,0);
+      }}
+      .sac-img:hover {{
+        transform: translateY(-4px) scale(1.02);
+        filter: brightness(1.06);
+        box-shadow: 0 14px 32px rgba(255,255,220,0.25);
+      }}
+      .sac-title {{
+        margin: 10px 0 6px 0;
+        font-weight: 700;
+        font-size: 1.05rem;
+      }}
+      .sac-desc {{
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }}
+      /* Make Streamlit columns gap a bit tighter visually */
+      section.main > div.block-container {{
+        padding-top: 1.2rem;
+        padding-bottom: 2rem;
+      }}
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+st.markdown("<h1 style='color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,.4)'>Catholic Sacramentals</h1>", unsafe_allow_html=True)
+st.caption("Drop your images into the **assets/** folder using the exact filenames below. Missing or invalid images fall back to **placeholder**.")
+
+# ---------- GRID RENDER ----------
+# Build three columns responsive grid
+cols = st.columns(3, gap="large")
+
+for idx, key in enumerate(ITEM_KEYS):
+    col = cols[idx % 3]
+    with col:
+        # Find the item image (try multiple extensions), or fallback to placeholder
+        img_path = first_existing(ASSETS_DIR / key)
+        placeholder_path = ph_file  # already resolved above
+        if placeholder_path is None:
+            # If absolutely nothing exists, skip rendering the image but keep text
+            img_uri = ""
+        else:
+            use_path = img_path if img_path else placeholder_path
+            img_uri = img_data_uri(use_path, placeholder_path)
+
+        st.markdown('<div class="sac-card">', unsafe_allow_html=True)
+
+        if img_uri:
+            st.markdown(
+                f"""
+                <img src="{img_uri}" alt="{humanize(key)}" class="sac-img"/>
+                """,
+                unsafe_allow_html=True
+            )
+
+        st.markdown(f'<div class="sac-title">{humanize(key)}</div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="sac-desc">{DESC.get(key, "Description coming soon.")}</div>', unsafe_allow_html=True)
+        st.markdown("</div>", unsafe_allow_html=True)
+
+# ---------- FOOTER HINT ----------
+st.markdown("---")
+st.info(
+    "🖼️ **Add/replace images:** put files in `assets/` named exactly like the items "
+    f"({', '.join(ITEM_KEYS[:6])}, ...). Supported: {', '.join(EXTS)}. "
+    "Background image should be `assets/background.(jpg|png|webp)`. A global `assets/placeholder.(jpg|png|webp)` "
+    "is used when an image is missing or invalid."
+)
