@@ -1,44 +1,42 @@
 import streamlit as st
 import os
 
-st.set_page_config(page_title="Catholic Sacramentals", layout="wide")
+st.set_page_config(layout="wide")
 
 # Background CSS
-background_path = os.path.join("assets", "background.jpg")
 st.markdown(
-    f'''
+    f"""
     <style>
     .stApp {{
-        background-image: url("{background_path}");
+        background: url('assets/background.jpg') no-repeat center center fixed;
         background-size: cover;
-        background-attachment: fixed;
     }}
-    .hover-effect img {{
-        transition: transform 0.3s, box-shadow 0.3s;
+    .sacramental-img {{
+        transition: all 0.3s ease-in-out;
+        border-radius: 12px;
     }}
-    .hover-effect img:hover {{
+    .sacramental-img:hover {{
         transform: scale(1.05);
-        box-shadow: 0px 4px 20px rgba(255, 255, 200, 0.6);
+        box-shadow: 0 0 20px rgba(255, 255, 200, 0.6);
     }}
     </style>
-    ''',
+    """,
     unsafe_allow_html=True
 )
 
-# Display sacramentals with hover effect
+st.title("Catholic Sacramentals Encyclopedia")
+
+# List of sacramentals
 sacramentals = [
-    "holy_water","rosary","crucifix","scapular","medal",
-    "holy_card","blessed_salt","candle","incense","oil",
-    "bible","prayer_book","chalice","paten","thurible",
-    "monstrance","relic","holy_water_font","altar_cloth",
-    "holy_bells","sign_of_the_cross","ash","palm","blessing"
+    "holy_water", "scapular", "rosary", "medal", "crucifix",
+    "blessed_oil", "palm_branch", "candle", "incense",
+    "relic", "holy_card", "rosary_ring"
 ]
 
-st.title("Catholic Sacramentals")
-cols = st.columns(3)
-for idx, item in enumerate(sacramentals):
+# Display images and descriptions
+for item in sacramentals:
     img_path = os.path.join("assets", f"{item}.jpg")
-    with cols[idx % 3]:
-        st.markdown(f"<div class='hover-effect'>", unsafe_allow_html=True)
-        st.image(img_path, caption=item.replace("_"," ").title(), use_container_width=True)
-        st.markdown("</div>", unsafe_allow_html=True)
+    if not os.path.exists(img_path) or os.path.getsize(img_path) == 0:
+        img_path = os.path.join("assets", "placeholder.jpg")
+    st.image(img_path, caption=item.replace("_", " ").title(), use_container_width=True)
+    st.write(f"**{item.replace('_', ' ').title()}**: Detailed and rich historical description coming soon.")
