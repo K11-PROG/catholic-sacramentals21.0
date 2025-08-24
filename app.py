@@ -1,49 +1,10 @@
 import streamlit as st
 import os
-import base64
 
-st.set_page_config(page_title="Catholic Sacramentals", layout="wide")
-
+# Path to assets
 ASSETS_DIR = "assets"
-PLACEHOLDER = os.path.join(ASSETS_DIR, "placeholder.jpg")
-BACKGROUND = os.path.join(ASSETS_DIR, "background.jpg")
 
-def get_base64_image(path):
-    try:
-        with open(path, "rb") as f:
-            data = f.read()
-        return base64.b64encode(data).decode()
-    except FileNotFoundError:
-        return ""
-
-background_b64 = get_base64_image(BACKGROUND)
-
-if background_b64:
-    st.markdown(
-        f"""
-        <style>
-            .stApp {{
-                background-image: url("data:image/jpg;base64,{background_b64}");
-                background-size: cover;
-                background-attachment: fixed;
-            }}
-            img {{
-                transition: transform 0.2s ease, box-shadow 0.2s ease;
-                border-radius: 10px;
-            }}
-            img:hover {{
-                transform: scale(1.05);
-                box-shadow: 0px 0px 20px rgba(255, 255, 200, 0.7);
-            }}
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
-
-def safe_image_loader(file_name):
-    path = os.path.join(ASSETS_DIR, file_name)
-    return path if os.path.exists(path) else PLACEHOLDER
-
+# Full, extensive sacramentals dictionary
 sacramentals = {
     "ashes": (
         "Blessed ashes, primarily used on Ash Wednesday, signify penance and mortality. This ancient practice, rooted in the Old Testament "
@@ -159,12 +120,31 @@ sacramentals = {
         "dating to the early Church. Christians begin and end prayers with it, sanctifying actions and seeking God’s blessing."
     )
 }
-}
 
-st.title("Catholic Sacramentals Encyclopedia")
+# Streamlit layout
+st.set_page_config(page_title="Catholic Sacramentals Encyclopedia", layout="wide")
 
+# Background image
+background_path = os.path.join(ASSETS_DIR, "background.jpg")
+if os.path.exists(background_path):
+    st.markdown(
+        f"""
+        <style>
+        .stApp {{
+            background: url('{background_path}');
+            background-size: cover;
+            background-position: center;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+# Display sacramentals
 for item, description in sacramentals.items():
-    img_path = safe_image_loader(f"{item}.jpg")
+    img_path = os.path.join(ASSETS_DIR, f"{item}.jpg")
+    if not os.path.exists(img_path):
+        img_path = os.path.join(ASSETS_DIR, "placeholder.jpg")
     st.image(img_path, caption=item.replace("_", " ").title(), use_container_width=True)
-    st.markdown(f"**{description}**")
+    st.write(description)
     st.markdown("---")
