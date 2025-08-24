@@ -16,7 +16,6 @@ def get_base64_image(path):
     except FileNotFoundError:
         return ""
 
-# Load background
 background_b64 = get_base64_image(BACKGROUND)
 
 if background_b64:
@@ -42,7 +41,6 @@ if background_b64:
     )
 
 def safe_image_loader(file_name):
-    """Returns path to file or placeholder if missing."""
     path = os.path.join(ASSETS_DIR, file_name)
     return path if os.path.exists(path) else PLACEHOLDER
 
@@ -161,12 +159,10 @@ sacramentals = {
         "dating to the early Church. Christians begin and end prayers with it, sanctifying actions and seeking God’s blessing."
     )
 }
-
 }
 
 st.title("Catholic Sacramentals Encyclopedia")
 
-# Display each item with image and description
 for item, description in sacramentals.items():
     img_path = safe_image_loader(f"{item}.jpg")
     st.image(img_path, caption=item.replace("_", " ").title(), use_container_width=True)
