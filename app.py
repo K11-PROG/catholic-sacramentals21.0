@@ -43,7 +43,7 @@ DESC = {
     "relic": "Relics have been venerated since the 2nd century, with martyrs’ graves becoming pilgrimage sites. The Council of Trent affirmed their use, and they remain integral to altars and devotions.",
     "rosary": "The rosary’s origins lie in the 12th-13th century, with Dominican promotion by St. Dominic. It unites vocal prayer and meditation on Christ’s life and Mary’s role, a devotion embraced worldwide.",
     "cord": "Cords, like the Cord of St. Joseph or St. Philomena, appeared in the 17th century. Worn around the waist, they symbolize purity, fidelity, and special petitions for protection and grace.",
-    "sacapular": "The scapular developed from monastic habits. The Brown Scapular, linked to Our Lady of Mount Carmel in the 13th century, became a sign of Marian devotion and consecration.",
+    "scapular": "The scapular developed from monastic habits. The Brown Scapular, linked to Our Lady of Mount Carmel in the 13th century, became a sign of Marian devotion and consecration.",
     "monstrance": "Monstrances developed in the 13th century to display the consecrated Host during adoration and processions. Often gilded and radiant, they emphasize Christ’s Real Presence and became common after Corpus Christi was established in 1264.",
     "eucharistic_host": "The Eucharistic Host, unleavened bread, becomes the Body of Christ at the consecration. Reserved for adoration and Communion, the Host has been central since the Last Supper and was solemnly elevated in the Mass by the 12th century."
 }
