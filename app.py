@@ -1,34 +1,44 @@
 import streamlit as st
 import os
 
-# --- PAGE CONFIG ---
-st.set_page_config(
-    page_title="Catholic Sacramentals Encyclopedia",
-    layout="wide",
-    page_icon="✝️"
-)
+st.set_page_config(page_title="Catholic Sacramentals Encyclopedia", layout="wide", page_icon="✝️")
 
-# --- CUSTOM CSS (Background + Hover Effect) ---
+# CSS for background, hover effects, and ornamental heading
 st.markdown("""
-    <style>
-    .stApp {
-        background-image: url("assets/background.jpg");
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-    }
-    .sacramental-img {
-        transition: transform 0.25s ease, box-shadow 0.25s ease;
-        border-radius: 12px;
-    }
-    .sacramental-img:hover {
-        transform: translateY(-8px) scale(1.02);
-        box-shadow: 0 0 20px rgba(255, 255, 200, 0.6);
-    }
-    </style>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+.stApp {
+    background-image: url("assets/background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #fff;
+}
+
+.sacramental-img {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    border-radius: 12px;
+}
+.sacramental-img:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 0 20px rgba(255, 255, 200, 0.6);
+}
+
+h1.cursive-title {
+    font-family: 'Great Vibes', cursive;
+    text-align: center;
+    font-size: 4em;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    color: #fff;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+}
+</style>
 """, unsafe_allow_html=True)
 
-# --- SACRAMENTALS LIST ---
+st.markdown("<h1 class='cursive-title'>Catholic Sacramentals</h1>", unsafe_allow_html=True)
+
 ITEM_KEYS = [
     "ashes", "bible", "blessed_medals", "blessed_salt", "blessing",
     "candle", "chaplet", "crucifix", "holy_bells", "holy_card",
@@ -37,23 +47,44 @@ ITEM_KEYS = [
     "sacapular", "thurible", "monstrance", "cord", "eucharistic_host", "relic"
 ]
 
-# --- DESCRIPTIONS (EXTENSIVE, HISTORIC, RICH) ---
 DESC = {
-    "ashes": """**Ashes** are blessed remains of burned palm branches from the previous year's Palm Sunday, used on Ash Wednesday to mark the faithful with the sign of the cross. This custom dates back to the early Middle Ages, symbolizing penance and mortality, reminding Christians: "Remember that you are dust, and to dust you shall return." """,
-    "bible": """**Bible** is the sacred collection of writings comprising the Old and New Testaments. It has been central to Christian worship since the first centuries, translated into thousands of languages, and remains the source of Catholic doctrine, prayer, and study.""",
-    "blessed_medals": """**Blessed Medals**, such as the Miraculous Medal or Saint Benedict Medal, are sacramentals that bear holy images or inscriptions. Worn for spiritual protection and devotion, medals became widespread in the early Church and gained formal blessings in the 17th–19th centuries.""",
-    "blessed_salt": """**Blessed Salt** is ordinary salt exorcised and blessed by a priest, used for protection against evil and for purification. Mentioned by St. Augustine and rooted in Jewish and Christian ritual, it can be sprinkled in homes or mixed with holy water.""",
-    "blessing": """**Blessings** are invocations of God's favor pronounced by clergy or laity. From the earliest centuries, blessings were extended over people, objects, and events, sanctifying daily life and inviting divine grace.""",
-    "candle": """**Candles** symbolize Christ, the Light of the World. They appear in every sacramental rite—baptism, funerals, Mass. Beeswax candles were prescribed by medieval liturgical norms; their steady flame represents prayer and divine presence.""",
-    "chaplet": """**Chaplets** are devotional prayers counted on beads, often shorter than the rosary. Originating in medieval Europe, chaplets encourage meditation on Christ, Mary, or the saints, adapting prayer to specific needs.""",
-    "crucifix": """**Crucifix** displays the body of Christ on the cross, recalling the Passion and salvation. Crucifixes became widespread by the 6th century and are required in Catholic liturgical settings, symbolizing sacrificial love.""",
-    "holy_bells": """**Holy Bells** are blessed and sometimes exorcised, used to call the faithful and ward off evil. Bell blessing rituals date to the early Middle Ages; their sound was believed to sanctify the air and announce sacred action.""",
-    "holy_card": """**Holy Cards** are small devotional pictures, often with prayers. They emerged in 16th-century Europe and remain a popular way to share images of saints, scripture, or devotions.""",
-    "holy_doors": """**Holy Doors** are sealed doors in major basilicas opened during Jubilee Years. Crossing them symbolizes pilgrimage and spiritual renewal, a tradition confirmed since the 15th century by papal decree.""",
-    "holy_images": """**Holy Images** include icons, paintings, and statues, aiding devotion and contemplation. Defended by the Second Council of Nicaea (787), they teach and inspire, pointing to the realities they depict.""",
-    "holy_oil": """**Holy Oils** (chrism, catechumens, infirm) are consecrated at the Chrism Mass and used in sacraments. The use of oil in anointing dates to the Old Testament and the early Church, signifying healing and sanctification.""",
-    "holy_water": """**Holy Water** is water blessed by a priest, recalling baptism and used for blessing persons, places, and things. The practice is ancient, rooted in Jewish ritual washings and the earliest Christian baptisms.""",
-    "incense": """**Incense** is fragrant resin burned in liturgy to honor God and signify prayers rising to heaven. Mentioned in scripture and used since apostolic times, its solemn use enriches Mass and Benediction.""",
-    "liturgical_vestments": """**Liturgical Vestments** are garments worn by clergy during services, evolving from Roman dress. Each vestment carries symbolism, and colors follow the liturgical calendar to reflect seasons of penance, joy, or solemnity.""",
-    "medal": """**Medal** is a broader category for devotional tokens bearing saints or sacred images, often carried or worn. Medals became popular devotional aids in medieval Christianity.""",
-    "palms": """**Palms** are blessed branches distributed on Palm Sunday, commemorating Christ’s triumphal entry into Jerusalem. They are later burned to make ashes
+    "ashes": """**Ashes**: Blessed ashes, usually from burnt palms, symbolize repentance and mortality. They are used on Ash Wednesday, reminding the faithful of life’s fragility and the call to conversion, a tradition dating back to the 10th century.""",
+    "bible": """**Bible**: The Holy Scriptures are central to Christian life. As a sacramental, a blessed Bible encourages reverence for God’s Word, tracing its written forms back to the early Church and monastic scriptoria.""",
+    "blessed_medals": """**Blessed Medals**: Sacred medals bearing images of Christ, Mary, or saints. Common examples include the Miraculous Medal (1830) and St. Benedict Medal. They serve as reminders of faith and intercession.""",
+    "blessed_salt": """**Blessed Salt**: Used in blessings and exorcisms, this ancient sacramental recalls salt’s biblical symbolism of purity and preservation. It has roots in Old Testament ritual and early Christian practice.""",
+    "blessing": """**Blessings**: Spoken or written invocations asking God’s favor. Priests bless objects, people, and events, extending the Church’s prayerful protection. Blessings are among the oldest sacramentals, recorded in Scripture.""",
+    "candle": """**Candle**: Blessed candles represent Christ the Light. Key moments include Candlemas (Feast of the Presentation, 4th century). They accompany prayers, processions, and sacraments.""",
+    "chaplet": """**Chaplet**: A smaller string of beads or prayers. Variants include the Divine Mercy Chaplet (20th century). Chaplets echo the rosary’s meditative rhythm, focusing on particular devotions.""",
+    "crucifix": """**Crucifix**: A cross bearing the image of Christ crucified. Essential in Catholic homes and churches since the early centuries, reminding of Christ’s sacrifice and love.""",
+    "holy_bells": """**Holy Bells**: Blessed bells call the faithful to worship and sanctify spaces. Historically, bells were blessed to ward off storms and evil, with documented rites from the 8th century.""",
+    "holy_card": """**Holy Card**: Small devotional cards depicting sacred images or prayers. These originated in 16th-century Europe as popular aids for prayer and remembrance.""",
+    "holy_doors": """**Holy Doors**: Specially designated doors opened during Jubilees (since 1300), symbolizing pilgrimage and the grace of entering God’s mercy.""",
+    "holy_images": """**Holy Images**: Sacred art, icons, and statues encourage prayer and teaching. Veneration of images was defended at the Second Council of Nicaea (787).""",
+    "holy_oil": """**Holy Oil**: Oils blessed for sacraments and blessings, including Chrism, Catechumen, and Oil of the Sick. Used since apostolic times to anoint and strengthen the faithful.""",
+    "holy_water": """**Holy Water**: Blessed water for blessing people and places. Early Christians adopted the Jewish use of ritual water, now found in fonts at every church entrance.""",
+    "incense": """**Incense**: Aromatic resin burned in worship, symbolizing prayers rising to God. Its use dates back to the Temple in Jerusalem and is prominent in Christian liturgies.""",
+    "liturgical_vestments": """**Liturgical Vestments**: Special garments worn in worship, evolving from ancient Roman dress. They symbolize service and reverence in liturgy.""",
+    "medal": """**Medal**: Blessed tokens of faith, commemorating saints or events. Their widespread use began in the Middle Ages, deepening personal devotion.""",
+    "palms": """**Palms**: Blessed branches from Palm Sunday, recalling Christ’s entry into Jerusalem. Kept in homes and later burned for ashes used on Ash Wednesday.""",
+    "rosary": """**Rosary**: A string of beads for meditative prayer. Tradition credits St. Dominic (13th century), though prayer beads existed earlier. A central Marian devotion.""",
+    "sacapular": """**Scapular**: A devotional garment or smaller badge, signifying dedication to Mary or a saint. The Carmelite scapular (13th century) is especially well-known.""",
+    "thurible": """**Thurible**: A metal censer swung during liturgy to burn incense. Used since the early Church, derived from temple worship.""",
+    "monstrance": """**Monstrance**: A vessel to display the Eucharist for adoration. Evolved in the Middle Ages to encourage devotion to the Blessed Sacrament.""",
+    "cord": """**Cord**: A blessed rope or band, often linked to a confraternity or saint. Used as a sign of devotion or protection.""",
+    "eucharistic_host": """**Eucharistic Host**: The consecrated bread, truly the Body of Christ. Revered at Mass and in adoration, the summit of Catholic worship.""",
+    "relic": """**Relic**: Physical remains or items linked to saints or holy events. Veneration dates to the early Church, affirming the holiness of God’s friends."""
+}
+
+for key in ITEM_KEYS:
+    img_path = os.path.join("assets", f"{key}.jpg")
+    caption = key.replace("_", " ").title()
+    desc = DESC.get(key, "")
+    try:
+        if os.path.exists(img_path):
+            st.image(img_path, caption=caption, use_container_width=True, output_format="auto")
+        else:
+            st.image(os.path.join("assets", "placeholder.jpg"), caption=caption, use_container_width=True)
+        st.markdown(desc)
+    except:
+        st.image(os.path.join("assets", "placeholder.jpg"), caption=caption, use_container_width=True)
+        st.markdown(desc)
