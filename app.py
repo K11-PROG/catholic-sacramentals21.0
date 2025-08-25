@@ -46,7 +46,7 @@ ITEM_KEYS = [
     "candle", "chaplet", "crucifix", "holy_bells", "holy_card",
     "holy_doors", "holy_images", "holy_oil", "holy_water", "incense",
     "liturgical_vestments", "medal", "palms", "thurible",
-    "relic", "rosary", "cord", "sacapular",
+    "relic", "rosary", "cord", "scapular",
     "monstrance", "eucharistic_host"
 ]
 
@@ -54,7 +54,7 @@ ITEM_KEYS = [
 DESC = {
     "ashes": "Ashes, used on Ash Wednesday, date back to the early Church and Jewish penitential practices. The imposition of ashes recalls mortality and repentance, connecting Christians to ancient Israelite traditions and reminding them of Genesis 3:19.",
     "bible": "The Bible, meaning 'books,' is a library of sacred writings. Catholic editions include the Deuterocanonical books, preserved by the Septuagint. Since the earliest centuries, illuminated manuscripts and later printed Bibles were treasured, forming the foundation of Christian teaching.",
-    "blessed_medals": "Blessed medals gained popularity in the early Middle Ages as tokens of faith and protection. The Miraculous Medal originated from St. Catherine Labouré’s visions in 1830, while the St. Benedict Medal dates back at least to the 11th century, inscribed with prayers of exorcism.",
+    "blessed_medals": "Blessed medals gained popularity in the early Middle Ages as tokens of faith and protection. They commemorate saints, events, or Marian devotions and often bear protective inscriptions. The Miraculous Medal originated from St. Catherine Labouré’s visions in 1830, while the St. Benedict Medal dates back at least to the 11th century, inscribed with prayers of exorcism.",
     "blessed_salt": "Blessed salt, known in the Roman Ritual, was used as early as the 3rd century. It recalls Elisha’s purification of water (2 Kings 2:19-22) and symbolizes preservation from corruption and spiritual protection.",
     "blessing": "Blessings are among the oldest sacramentals, rooted in the Jewish practice of berakhot. Early Christian communities blessed homes, fields, and travelers. The Roman Pontifical preserved many such prayers, sanctifying daily life.",
     "candle": "Candles symbolize Christ as the Light of the World. Early Christians used candles in catacombs; by the 4th century, they became standard in liturgy. The Paschal candle, first mentioned in the 5th century, represents the Resurrection.",
@@ -68,13 +68,12 @@ DESC = {
     "holy_water": "Holy water reflects ancient Jewish purification rites and was noted by the 4th century. It is exorcised and blessed, reminding the faithful of Baptism and serving as protection against evil.",
     "incense": "Incense was offered in the Temple of Jerusalem and adopted by Christians by the 4th century. Its smoke symbolizes prayers rising to heaven (Psalm 141:2) and sanctifies the liturgy.",
     "liturgical_vestments": "Vestments evolved from Roman attire. By the 5th century, they became distinct for worship. Colors signify liturgical seasons, and garments like the chasuble and stole symbolize Christ’s yoke and charity.",
-    "medal": "Medals as tokens of faith emerged from pilgrim badges and relic medals in the early Middle Ages. They commemorate saints, events, or Marian devotions and often bear protective inscriptions.",
     "palms": "Palms, blessed on Palm Sunday, recall Christ’s entry into Jerusalem. The custom dates back to the 4th century in Jerusalem and spread throughout Christendom as a sign of victory and hope.",
     "thurible": "The thurible or censer holds burning charcoal and incense. Its use mirrors Jewish Temple worship and became a fixed part of Christian liturgy by the 6th century. Its fragrant smoke signifies reverence and prayer.",
     "relic": "Relics have been venerated since the 2nd century, with martyrs’ graves becoming pilgrimage sites. The Council of Trent affirmed their use, and they remain integral to altars and devotions.",
     "rosary": "The rosary’s origins lie in the 12th-13th century, with Dominican promotion by St. Dominic. It unites vocal prayer and meditation on Christ’s life and Mary’s role, a devotion embraced worldwide.",
     "cord": "Cords, like the Cord of St. Joseph or St. Philomena, appeared in the 17th century. Worn around the waist, they symbolize purity, fidelity, and special petitions for protection and grace.",
-    "sacapular": "The scapular developed from monastic habits. The Brown Scapular, linked to Our Lady of Mount Carmel in the 13th century, became a sign of Marian devotion and consecration.",
+    "scapular": "The scapular developed from monastic habits. The Brown Scapular, linked to Our Lady of Mount Carmel in the 13th century, became a sign of Marian devotion and consecration.",
     "monstrance": "Monstrances developed in the 13th century to display the consecrated Host during adoration and processions. Often gilded and radiant, they emphasize Christ’s Real Presence and became common after Corpus Christi was established in 1264.",
     "eucharistic_host": "The Eucharistic Host, unleavened bread, becomes the Body of Christ at the consecration. Reserved for adoration and Communion, the Host has been central since the Last Supper and was solemnly elevated in the Mass by the 12th century."
 }
