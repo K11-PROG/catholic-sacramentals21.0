@@ -7,90 +7,82 @@ st.set_page_config(
     layout="wide"
 )
 
-# --- STYLES ---
-st.markdown(
-    """
-    <style>
-    @import url('https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap');
+# --- CUSTOM STYLES ---
+st.markdown("""
+<style>
+@import url('https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap');
 
-    body {
-        background-image: url('assets/background.jpg');
-        background-size: cover;
-        background-attachment: fixed;
-    }
-    h1 {
-        font-family: 'UnifrakturCook', cursive;
-        font-size: 60px;
-        color: #fdfdfd;
-        text-align: center;
-        text-shadow: 2px 2px 6px rgba(0,0,0,0.8);
-        margin-bottom: 40px;
-    }
-    .sacramental-img {
-        transition: all 0.3s ease;
-        border-radius: 10px;
-        box-shadow: 0 0 0 rgba(0,0,0,0);
-    }
-    .sacramental-img:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 8px 20px rgba(255, 255, 200, 0.7);
-    }
-    .sacramental-desc {
-        color: #fff;
-        background: rgba(0,0,0,0.4);
-        padding: 10px;
-        border-radius: 8px;
-        margin-bottom: 30px;
-        font-size: 16px;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+.stApp {
+    background-image: url('assets/background.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+}
 
-# --- ITEMS ---
+h1 {
+    font-family: 'UnifrakturCook', cursive;
+    text-align: center;
+    font-size: 60px;
+    color: #fff5e6;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+    margin-bottom: 40px;
+}
+
+/* Card effects */
+img.sacramental-img {
+    transition: all 0.3s ease;
+    border-radius: 10px;
+    box-shadow: 0 0 0 rgba(0,0,0,0);
+}
+img.sacramental-img:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 25px rgba(255, 255, 200, 0.7);
+}
+</style>
+""", unsafe_allow_html=True)
+
+# --- ITEM KEYS ---
 ITEM_KEYS = [
     "ashes", "bible", "blessed_medals", "blessed_salt", "blessing",
     "candle", "chaplet", "crucifix", "holy_bells", "holy_card",
-    "holy_doors", "holy_images", "holy_oil", "holy_water",
-    "incense", "liturgical_vestments", "medal", "palms",
-    "thurible", "relic", "rosary", "cord", "sacapular",
+    "holy_doors", "holy_images", "holy_oil", "holy_water", "incense",
+    "liturgical_vestments", "medal", "palms", "thurible",
+    "relic", "rosary", "cord", "sacapular",
     "monstrance", "eucharistic_host"
 ]
 
-# --- DESCRIPTIONS (historical and detailed) ---
+# --- DESCRIPTIONS (FULL, FROM EARLIER) ---
 DESC = {
-    "ashes": """Ashes, used on Ash Wednesday, mark the start of Lent. They date back to the earliest Christian centuries and reflect older Jewish penitential rites. Burned from the previous year’s palms, they remind the faithful of mortality and repentance: "Remember that you are dust and to dust you shall return." """,
-    "bible": """The Bible, meaning 'books,' is the inspired Word of God. Catholic editions include the Deuterocanonical books. From hand-copied manuscripts of monks to the printing revolution, the Bible has been preserved, illuminated, and venerated as the foundation of Christian belief and liturgy.""",
-    "blessed_medals": """Blessed medals are sacred tokens depicting Christ, Mary, or saints. The Miraculous Medal (1830, Rue du Bac, Paris) and St. Benedict Medal (11th century) are prominent examples, worn as reminders of faith and shields of spiritual protection.""",
-    "blessed_salt": """Blessed salt, noted in the Roman Ritual, has been used since at least the 3rd century. It recalls biblical events like Elisha purifying water and serves as a sign of preservation and protection, sprinkled in homes, fields, or during exorcisms.""",
-    "blessing": """Blessings sanctify people, places, and objects. Rooted in Jewish prayers (berakhot), Christian blessings date to apostolic times and were codified in texts like the Roman Pontifical, calling down God’s grace in daily life and worship.""",
-    "candle": """Candles, symbolizing Christ as Light, were used by early Christians in catacombs. By the 4th century they became essential in liturgy. The Paschal candle, lit at Easter Vigil, represents the risen Christ. Candles accompany sacraments, processions, and private devotion.""",
-    "chaplet": """Chaplets are prayer beads beyond the rosary, often focused on specific devotions. Medieval confraternities popularized them, and the Divine Mercy Chaplet (20th century) revealed to St. Faustina continues this tradition of meditative, repetitive prayer.""",
-    "crucifix": """The crucifix, depicting Christ crucified, emerged by the 6th century. It confronts the believer with the Passion and redemption. Crucifixes are blessed for homes, altars, and personal devotion, embodying the core mystery of salvation.""",
-    "holy_bells": """Bells were first blessed in the 8th century. Known as 'sacred trumpets,' they marked sacred time and were believed to drive away storms and evil. Church bells, tower bells, and sanctuary bells announce prayer and liturgy.""",
-    "holy_card": """Holy cards, devotional prints often with saintly images and prayers, appeared as woodcuts in the 15th century and flourished in the 17th-19th centuries. They teach, inspire, and serve as portable reminders of faith.""",
-    "holy_doors": """Holy Doors, ceremonial entrances in basilicas, were instituted in the 15th century. Opened only during Jubilee years, they symbolize grace and new beginnings; crossing them grants indulgences and renewal.""",
-    "holy_images": """Holy images, icons, and statues trace to early Christian catacombs. The Second Council of Nicaea (787) defended their veneration as aids to devotion, not worship. They make visible the invisible realities of faith.""",
-    "holy_oil": """Holy oils are consecrated annually by bishops. Chrism, Oil of Catechumens, and Oil of the Sick are mentioned by early Fathers. They anoint in sacraments, signify the Spirit, heal the sick, and strengthen the baptized and ordained.""",
-    "holy_water": """Holy water, blessed and exorcised, reminds Christians of Baptism and cleanses spiritually. Mentioned in the 4th century, it is used to bless persons, homes, and wards off evil.""",
-    "incense": """Incense, a mixture of resins, has been part of worship since the Temple of Jerusalem. By the 4th century, it adorned Christian liturgy. Its rising smoke symbolizes prayer and reverence, sanctifying sacred spaces.""",
-    "liturgical_vestments": """Liturgical vestments developed from Roman civil dress. By the 5th century they were distinct to worship. The chasuble, alb, and stole bear ancient symbolism, and colors mark liturgical seasons and feasts.""",
-    "medal": """Medals commemorate saints, events, or Marian devotions. Rooted in pilgrim tokens of the Middle Ages, they are blessed for spiritual benefit and carried or worn as expressions of faith.""",
-    "palms": """Palms, blessed on Palm Sunday, recall Christ’s triumphal entry. From the 4th century, Christians carried branches in Jerusalem. Palms are later burned to ashes, connecting Holy Week to Lent.""",
-    "thurible": """The thurible, or censer, burns incense on charcoal. Swinging it spreads fragrant smoke, signifying prayers rising. Used since the 6th century, it solemnizes Mass, Benediction, and processions.""",
-    "relic": """Relics—remains or belongings of saints—have been honored since the 2nd century. Martyrs’ tombs were early altars. The Council of Trent reaffirmed relic veneration, linking the faithful with the communion of saints.""",
-    "rosary": """The rosary, beads to meditate on Christ and Mary, took shape in the Middle Ages, promoted by St. Dominic. The mysteries guide prayer through the life of Christ, embraced by millions worldwide.""",
-    "cord": """Cords, blessed ropes worn at the waist, are associated with saints like Joseph and Philomena. Dating to the 17th century, they symbolize purity, consecration, and are used for petitions and healing.""",
-    "sacapular": """The scapular, from monastic habits, became a small devotional garment. The Brown Scapular, tied to the Carmelites in the 13th century, expresses Marian protection and dedication.""",
-    "monstrance": """Monstrances, from the 13th century, display the consecrated Host. Gilded and radiant, they emphasize Christ’s Real Presence and are used in adoration and processions, especially after Corpus Christi’s institution.""",
-    "eucharistic_host": """The Eucharistic Host, unleavened bread consecrated in the Mass, becomes the Body of Christ. From the Last Supper to medieval elevation rites, it is the summit of worship, adored and received as Christ Himself."""
+    "ashes": "Ashes, used on Ash Wednesday, date back to the early Church and Jewish penitential practices. The imposition of ashes recalls mortality and repentance, connecting Christians to ancient Israelite traditions and reminding them of Genesis 3:19.",
+    "bible": "The Bible, meaning 'books,' is a library of sacred writings. Catholic editions include the Deuterocanonical books, preserved by the Septuagint. Since the earliest centuries, illuminated manuscripts and later printed Bibles were treasured, forming the foundation of Christian teaching.",
+    "blessed_medals": "Blessed medals gained popularity in the early Middle Ages as tokens of faith and protection. The Miraculous Medal originated from St. Catherine Labouré’s visions in 1830, while the St. Benedict Medal dates back at least to the 11th century, inscribed with prayers of exorcism.",
+    "blessed_salt": "Blessed salt, known in the Roman Ritual, was used as early as the 3rd century. It recalls Elisha’s purification of water (2 Kings 2:19-22) and symbolizes preservation from corruption and spiritual protection.",
+    "blessing": "Blessings are among the oldest sacramentals, rooted in the Jewish practice of berakhot. Early Christian communities blessed homes, fields, and travelers. The Roman Pontifical preserved many such prayers, sanctifying daily life.",
+    "candle": "Candles symbolize Christ as the Light of the World. Early Christians used candles in catacombs; by the 4th century, they became standard in liturgy. The Paschal candle, first mentioned in the 5th century, represents the Resurrection.",
+    "chaplet": "Chaplets are prayer beads beyond the rosary, dating to medieval confraternities. The Divine Mercy Chaplet, revealed to St. Faustina in the 20th century, shows how these devotions evolve to meet spiritual needs.",
+    "crucifix": "The crucifix, with the figure of Christ, emerged in the 6th century and spread widely by the Middle Ages. It confronts the believer with the Passion and remains central to Catholic identity, often blessed for protection.",
+    "holy_bells": "Bells were blessed as early as the 8th century, called 'campanae' or 'sacred trumpets.' Their ringing at Mass or in towers was believed to ward off storms and evil, summoning the faithful to prayer.",
+    "holy_card": "Holy cards began as woodcuts in the late Middle Ages and became popular devotional items by the 17th century. They often depict saints or events and were used as catechetical tools.",
+    "holy_doors": "Holy Doors, opened during Jubilee years, originated in the 15th century at St. Peter’s Basilica. Passing through them symbolizes spiritual renewal and the reception of special indulgences.",
+    "holy_images": "Holy images trace to the earliest Christian catacombs. Icons flourished in the East; statues in the West. The Second Council of Nicaea (787) affirmed their veneration, not worship, as windows to the divine.",
+    "holy_oil": "Holy oil has Old Testament roots (Exodus 30). Chrism was mentioned by Church Fathers like Tertullian and Hippolytus. Consecrated oils are still used in Baptism, Confirmation, Holy Orders, and the Anointing of the Sick.",
+    "holy_water": "Holy water reflects ancient Jewish purification rites and was noted by the 4th century. It is exorcised and blessed, reminding the faithful of Baptism and serving as protection against evil.",
+    "incense": "Incense was offered in the Temple of Jerusalem and adopted by Christians by the 4th century. Its smoke symbolizes prayers rising to heaven (Psalm 141:2) and sanctifies the liturgy.",
+    "liturgical_vestments": "Vestments evolved from Roman attire. By the 5th century, they became distinct for worship. Colors signify liturgical seasons, and garments like the chasuble and stole symbolize Christ’s yoke and charity.",
+    "medal": "Medals as tokens of faith emerged from pilgrim badges and relic medals in the early Middle Ages. They commemorate saints, events, or Marian devotions and often bear protective inscriptions.",
+    "palms": "Palms, blessed on Palm Sunday, recall Christ’s entry into Jerusalem. The custom dates back to the 4th century in Jerusalem and spread throughout Christendom as a sign of victory and hope.",
+    "thurible": "The thurible or censer holds burning charcoal and incense. Its use mirrors Jewish Temple worship and became a fixed part of Christian liturgy by the 6th century. Its fragrant smoke signifies reverence and prayer.",
+    "relic": "Relics have been venerated since the 2nd century, with martyrs’ graves becoming pilgrimage sites. The Council of Trent affirmed their use, and they remain integral to altars and devotions.",
+    "rosary": "The rosary’s origins lie in the 12th-13th century, with Dominican promotion by St. Dominic. It unites vocal prayer and meditation on Christ’s life and Mary’s role, a devotion embraced worldwide.",
+    "cord": "Cords, like the Cord of St. Joseph or St. Philomena, appeared in the 17th century. Worn around the waist, they symbolize purity, fidelity, and special petitions for protection and grace.",
+    "sacapular": "The scapular developed from monastic habits. The Brown Scapular, linked to Our Lady of Mount Carmel in the 13th century, became a sign of Marian devotion and consecration.",
+    "monstrance": "Monstrances developed in the 13th century to display the consecrated Host during adoration and processions. Often gilded and radiant, they emphasize Christ’s Real Presence and became common after Corpus Christi was established in 1264.",
+    "eucharistic_host": "The Eucharistic Host, unleavened bread, becomes the Body of Christ at the consecration. Reserved for adoration and Communion, the Host has been central since the Last Supper and was solemnly elevated in the Mass by the 12th century."
 }
 
 ASSETS_DIR = "assets"
 
 # --- DISPLAY ---
-st.markdown("<h1>Catholic Sacramentals Encyclopedia</h1>", unsafe_allow_html=True)
+st.markdown("<h1>Catholic Sacramentals</h1>", unsafe_allow_html=True)
 
 cols = st.columns(3)
 
@@ -98,7 +90,7 @@ for idx, item in enumerate(ITEM_KEYS):
     img_path = os.path.join(ASSETS_DIR, f"{item}.jpg")
     with cols[idx % 3]:
         if os.path.exists(img_path):
-            st.image(img_path, caption=item.replace("_", " ").title(), use_container_width=True, output_format="auto")
+            st.image(img_path, caption=item.replace("_", " ").title(), use_container_width=True, output_format="auto", output_format_="auto", )
         else:
             st.image(os.path.join(ASSETS_DIR, "placeholder.jpg"), caption=item.replace("_", " ").title(), use_container_width=True)
-        st.markdown(f"<div class='sacramental-desc'>{DESC.get(item, '')}</div>", unsafe_allow_html=True)
+        st.markdown(DESC.get(item, ""))
