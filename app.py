@@ -99,9 +99,7 @@ The Second Council of Nicaea, held in 787, was a pivotal moment for this traditi
     "holy_oil": """Holy oil has Old Testament roots (Exodus 30). Chrism was mentioned by Church Fathers like Tertullian and Hippolytus.
 
 Consecrated oils are still used in Baptism, Confirmation, Holy Orders, and the Anointing of the Sick.""",
-    "holy_water": """Holy water reflects ancient Jewish purification rites and was noted by the 4th century.
-    
-Holy water has its roots in early Christian practices and is believed to date back to the time of the Apostles. The earliest written references to holy water appear in the Apostolic Constitutions, a Christian document from around the 4th century AD. This text suggests that the practice of blessing water for spiritual purposes was established by the Apostle Matthias, who was chosen to replace Judas Iscariot.
+    "holy_water": """Holy water has its roots in early Christian practices and is believed to date back to the time of the Apostles. The earliest written references to holy water appear in the Apostolic Constitutions, a Christian document from around the 4th century AD. This text suggests that the practice of blessing water for spiritual purposes was established by the Apostle Matthias, who was chosen to replace Judas Iscariot.
 
 The use of water for purification is also found in the Old Testament, where ritual ablutions were performed by the Jewish priests. These practices laid the groundwork for the Christian use of holy water, which symbolizes spiritual cleansing and renewal. Key biblical references include the creation narrative in Genesis, where the Spirit of God moves over the waters, and various purification rituals described in the Law of Moses.
 
