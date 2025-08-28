@@ -34,7 +34,19 @@ The Gospels narrate the life, death, and teachings of Jesus Christ. The Bible is
 The Bible has been translated into over 2,500 languages, making it the most widely distributed book in history. The Bible has profoundly influenced Western culture, literature, and moral thought. Its themes of creation, redemption, and divine justice resonate across various societies and religions.""",
     "blessed_medals": """Blessed medals gained popularity in the early Middle Ages as tokens of faith and protection.
 
-They commemorate saints, events, or Marian devotions and often bear protective inscriptions. The Miraculous Medal originated from St. Catherine Labouré’s visions in 1830, while the St. Benedict Medal dates back at least to the 11th century, inscribed with prayers of exorcism.""",
+There are many medals in use among the catholics. They commemorate saints, events, or Marian devotions and often bear protective inscriptions. 
+
+The Miraculous Medal, also known as the Medal of the Immaculate Conception, was designed following the visions of St. Catherine Labouré in 1830. The front of the medal depicts the Blessed Virgin Mary standing on a globe, crushing a serpent under her feet, with rays of light emanating from her hands.
+
+This depiction of the Blessed Virgin illustrates her sinlessness and her victory over the devil, represented by the serpent. The rays of light emanating from her hands signify the graces she bestows upon those who seek her intercession. The words “O Mary, conceived without sin, pray for us who have recourse to thee” encircle the image.
+
+On the reverse side, there is a cross and an M intertwined, with two hearts—the Sacred Heart of Jesus and the Immaculate Heart of Mary—and twelve stars representing the Apostles. The Miraculous Medal is often worn to seek Mary’s intercession and as a testament to faith in her protection and grace. 
+
+The Saint Benedict medal is rich in symbolism and is known as a powerful weapon in spiritual warfare. It has its own special blessing in the Roman Ritual that includes powerful prayers of exorcism. One side of the medal displays Saint Benedict holding a cross and the Rule of Saint Benedict. These words encircle the saint: “Eius in obitu nostro praesentia muniamur!” (“May we be strengthened by his presence in the hour of our death!”)
+
+Saint Michael the Archangel is known as the leader of the heavenly armies and our protector against evil. His medal usually features him wielding a sword or spear, standing triumphantly over Satan, represented as a dragon or serpent. This powerful imagery symbolizes Saint Michael’s victory over evil and his role as a defender of the faithful.
+
+Wearing a Saint Michael medal is a call for his protection against the snares of the devil and a reminder of the spiritual battle between good and evil. It is especially popular among police officers, soldiers, and those in dangerous professions who seek courage and protection in their line of duty.""",
     "blessed_salt": """Blessed salt, known in the Roman Ritual, was used as early as the 3rd century.
 
 It recalls Elisha’s purification of water (2 Kings 2:19-22) and symbolizes preservation from corruption and spiritual protection.""",
