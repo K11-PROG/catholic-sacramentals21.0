@@ -76,7 +76,13 @@ In the early Church, many Christians hung a cross on the eastern wall of their h
 The crucifix confronts the believer with the Passion and remains central to Catholic identity, often blessed for protection.""",
     "holy_bells": """Bells were blessed as early as the 8th century, called 'campanae' or 'sacred trumpets.'
 
-Their ringing at Mass or in towers was believed to ward off storms and evil, summoning the faithful to prayer.""",
+Their ringing at Mass or in towers was believed to ward off storms and evil, summoning the faithful to prayer.
+
+The origins of the ringing of the bells during the consecration date back to the time when the Mass was said in Latin, and many of the words said by the celebrant were spoken in a low voice. Rood screens also became popular in the Middle Ages, and many of the laity attending Mass had an obstructed view. The use of the bells was practical: it called people’s attention to the fact that the consecration was taking place.
+
+Although many of the practical reasons for the ringing of the bells no longer exist, they are still a part of our liturgical tradition and still call wandering minds back to the altar and the importance of what is happening.
+
+The Bible neither requires nor forbids the ringing of church bells, but does encourage the faithful to “make a joyful noise” (Psalm 100). Since the fifth century, some Christian churches have been ringing bells for spiritual and practical purposes such as to call the faithful to worship, to highlight a particular stage during a church service, to remind the faithful of God’s presence in their daily lives, and to announce important occurrences to the local community.""",
     "holy_card": """Holy cards began as woodcuts in the late Middle Ages and became popular devotional items by the 17th century.
 
 They often depict saints or events and were used as catechetical tools.""",
