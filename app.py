@@ -49,7 +49,13 @@ There are several types of candles used in the Catholic tradition: the Paschal c
 The Divine Mercy Chaplet, revealed to St. Faustina in the 20th century, shows how these devotions evolve to meet spiritual needs.""",
     "crucifix": """The crucifix, with the figure of Christ, emerged in the 6th century and spread widely by the Middle Ages.
 
-It confronts the believer with the Passion and remains central to Catholic identity, often blessed for protection.""",
+    A crucifix (from the Latin cruci fixus meaning '(one) fixed to a cross') is a cross with an image of Jesus on it, as distinct from a bare cross. The representation of Jesus himself on the cross is referred to in English as the corpus (Latin for 'body'). The crucifix emphasizes Jesus' sacrifice, including his death by crucifixion, which Christians believe brought about the redemption of mankind. Most crucifixes portray Jesus on a Latin cross, rather than a Tau cross or a Coptic cross.
+
+    Western crucifixes usually have a three-dimensional corpus, but in Eastern Orthodoxy Jesus' body is normally painted on the cross, or in low relief. Strictly speaking, to be a crucifix, the cross must be three-dimensional, but this distinction is not always observed. An entire painting of the crucifixion of Jesus including a landscape background and other figures is not a crucifix either.
+
+On some crucifixes a skull and crossbones are shown below the corpus, referring to Golgotha (Calvary), the site at which Jesus was crucified, which the Gospels say means in Hebrew "the place of the skullMedieval tradition held that it was the burial-place of Adam and Eve, and that the cross of Christ was raised directly over Adam's skull, so many crucifixes manufactured in Catholic countries still show the skull and crossbones below the corpus.
+
+The crucifix confronts the believer with the Passion and remains central to Catholic identity, often blessed for protection.""",
     "holy_bells": """Bells were blessed as early as the 8th century, called 'campanae' or 'sacred trumpets.'
 
 Their ringing at Mass or in towers was believed to ward off storms and evil, summoning the faithful to prayer.""",
