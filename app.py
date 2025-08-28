@@ -57,7 +57,7 @@ Early Christian communities blessed homes, fields, and travelers. The Roman Pont
 
 Their origins can be traced back to Jewish practices, where a perpetual light was kept in the Temple to signify God's presence, which Christians adapted for their own rituals over time.
 
-There are several types of candles used in the Catholic tradition: the Paschal candle, used during Easter Vigil, represents the Resurrection and light of Christ. Votive candles are lit for specific prayer intentions, often placed before statues or images. Altar candles are present during Mass to signify the presence of Christ in the Eucharist.""",
+There are several types of candles used in the Catholic tradition. The Paschal candle, used during Easter Vigil, represents the Resurrection and light of Christ. Votive candles are lit for specific prayer intentions, often placed before statues or images. Altar candles are present during Mass to signify the presence of Christ in the Eucharist.""",
     "chaplet": """Chaplets are prayer beads beyond the rosary, dating to medieval confraternities.
 
 The Divine Mercy Chaplet, revealed to St. Faustina in the 20th century, shows how these devotions evolve to meet spiritual needs.""",
