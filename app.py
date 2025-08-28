@@ -29,7 +29,7 @@ When we begin the holy season of Lent in preparation for Easter, we mourn and do
 
 The Old Testament is the Hebrew Bible as interpreted among the various branches of Christianity. The New Testament contains the four Gospels (Matthew, Mark, Luke, and John), Acts, 21 letters, and Revelation.
 
-The Gospels narrate the life, death, and teachings of Jesus Christ. The Bible is viewed as the inspired word of God and a guide for Christian living. Catholic editions include the Deuterocanonical books, preserved by the Septuagint, a Greek translation of the Hebrew Bible, was significant for early Christians. Since the earliest centuries, illuminated manuscripts and later printed Bibles were treasured, forming the foundation of Christian teaching.
+The Gospels narrate the life, death, and teachings of Jesus Christ. The Bible is viewed as the inspired word of God and a guide for Christian living. Catholic editions include the Deuterocanonical books, preserved by the Septuagint, a Greek translation of the Hebrew Bible that was significant for the early Christians. Since the earliest centuries, illuminated manuscripts and later printed Bibles were treasured, forming the foundation of Christian teaching.
 
 The Bible has been translated into over 2,500 languages, making it the most widely distributed book in history. The Bible has profoundly influenced Western culture, literature, and moral thought. Its themes of creation, redemption, and divine justice resonate across various societies and religions.""",
     "blessed_medals": """Blessed medals gained popularity in the early Middle Ages as tokens of faith and protection.
