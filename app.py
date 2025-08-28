@@ -1,5 +1,6 @@
 import streamlit as st
 import base64
+import json
 from pathlib import Path
 
 # ---------- CONFIG ----------
@@ -124,19 +125,38 @@ def read_bytes(path: Path) -> bytes | None:
     except Exception:
         return None
 
+def to_data_uri(p: Path, data: bytes) -> str:
+    mime = "image/png" if p.suffix.lower() == ".png" else "image/jpeg"
+    return f"data:{mime};base64,{base64.b64encode(data).decode('utf-8')}"
+
 def img_data_uri(path: Path | None, fallback: Path | None) -> str:
-    def to_uri(p: Path, data: bytes) -> str:
-        mime = "image/png" if p.suffix.lower() == ".png" else "image/jpeg"
-        return f"data:{mime};base64,{base64.b64encode(data).decode('utf-8')}"
     if path:
         data = read_bytes(path)
         if data:
-            return to_uri(path, data)
+            return to_data_uri(path, data)
     if fallback:
         fb = read_bytes(fallback)
         if fb:
             return f"data:image/jpeg;base64,{base64.b64encode(fb).decode('utf-8')}"
     return ""
+
+def hires_for(original_path: Path | None) -> Path | None:
+    """
+    Try to locate a higher-resolution alternative near the original:
+    name_hires, name_full, name@2x, name_large (same extension priority order).
+    Falls back to original if none found.
+    """
+    if not original_path:
+        return None
+    stem = original_path.with_suffix("")  # drop ext
+    # Candidates without ext; we add EXTS below
+    suffix_candidates = [f"{stem}", f"{stem}_hires", f"{stem}_full", f"{stem}@2x", f"{stem}_large"]
+    for base in suffix_candidates:
+        for ext in EXTS:
+            p = Path(str(base)).with_suffix(ext)
+            if p.exists():
+                return p
+    return original_path
 
 # ---------- BACKGROUND ----------
 bg_file = first_existing(ASSETS_DIR / "background")
@@ -188,6 +208,7 @@ section.main > div.block-container {{
   border-radius: 12px;
   transition: transform .3s ease, filter .3s ease, box-shadow .3s ease;
   box-shadow: 0 0 0 rgba(255,255,255,0);
+  cursor: zoom-in;
 }}
 .sac-img:hover {{
   transform: scale(1.08);
@@ -209,11 +230,88 @@ div[data-testid="stExpander"] p, div[data-testid="stExpander"] div p {{
   line-height: 1.5;
   margin-bottom: 0.8rem;
 }}
+
+/* ---- Modal Lightbox ---- */
+#lightbox-overlay {{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(2px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}}
+#lightbox-overlay.show {{ display: flex; }}
+
+#lightbox-content {{
+  position: relative;
+  max-width: 96vw;
+  max-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}}
+#lightbox-img {{
+  max-width: 96vw;
+  max-height: 90vh;
+  border-radius: 10px;
+  box-shadow: 0 10px 40px rgba(0,0,0,.6);
+}}
+
+.lb-btn {{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 28px;
+  line-height: 1;
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.35);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 12px;
+  cursor: pointer;
+  user-select: none;
+}}
+#lb-prev {{ left: -56px; }}
+#lb-next {{ right: -56px; }}
+
+#lb-close {{
+  position: absolute;
+  top: -48px;
+  right: 0;
+  font-size: 26px;
+  background: rgba(255,255,255,0.22);
+  border: 1px solid rgba(255,255,255,0.35);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+}}
+
+@media (max-width: 768px) {{
+  #lb-prev {{ left: -36px; }}
+  #lb-next {{ right: -36px; }}
+  #lb-close {{ top: -44px; }}
+}}
 </style>
 """, unsafe_allow_html=True)
 
 # ---------- TITLE ----------
 st.markdown("<h1 class='app-title'>Catholic Sacramentals</h1>", unsafe_allow_html=True)
+
+# ---------- Collect all image URIs per item (for the lightbox) ----------
+def uris_for_item(item_key: str):
+    paths = multiple_existing(ASSETS_DIR / item_key, max_images=3)
+    out = []
+    for p in paths:
+        hi = hires_for(p)
+        out.append(img_data_uri(hi, ph_file))
+    if not out and ph_file:
+        out = [img_data_uri(ph_file, ph_file)]
+    return out
+
+all_item_uris = {k: uris_for_item(k) for k in ITEM_KEYS}
 
 # ---------- GRID ----------
 cols = st.columns(3, gap="large")
@@ -225,12 +323,31 @@ for idx, key in enumerate(ITEM_KEYS):
         st.markdown('<div class="sac-card">', unsafe_allow_html=True)
         if images:
             if len(images) > 1:
-                selected = st.radio("", list(range(len(images))),
-                                    horizontal=True, label_visibility="collapsed", key=f"radio_{key}")
-                img_uri = img_data_uri(images[selected], ph_file)
+                selected = st.radio(
+                    "", list(range(len(images))),
+                    horizontal=True, label_visibility="collapsed", key=f"radio_{key}"
+                )
+                show_path = images[selected]
             else:
-                img_uri = img_data_uri(images[0], ph_file)
-            st.markdown(f'<img src="{img_uri}" alt="{humanize(key)}" class="sac-img"/>', unsafe_allow_html=True)
+                show_path = images[0]
+            # Use hires if available for display (browser scales it down)
+            hires_path = hires_for(show_path)
+            img_uri = img_data_uri(hires_path, ph_file)
+            # Add data attributes so JS knows which group and index
+            st.markdown(
+                f'<img src="{img_uri}" alt="{humanize(key)}" class="sac-img" '
+                f'data-group="{key}" data-index="0"/>',
+                unsafe_allow_html=True
+            )
+        else:
+            # fallback placeholder if no item image found
+            if ph_file:
+                ph_uri = img_data_uri(ph_file, ph_file)
+                st.markdown(
+                    f'<img src="{ph_uri}" alt="{humanize(key)}" class="sac-img" '
+                    f'data-group="{key}" data-index="0"/>',
+                    unsafe_allow_html=True
+                )
 
         with st.expander(humanize(key), expanded=False):
             text = DESC.get(key, "Description coming soon.")
@@ -239,3 +356,112 @@ for idx, key in enumerate(ITEM_KEYS):
                     st.write(para.strip())
 
         st.markdown('</div>', unsafe_allow_html=True)
+
+# ---------- LIGHTBOX HTML + JS ----------
+# Embed the overlay once and provide the images map to JS:
+images_json = json.dumps(all_item_uris)
+
+st.components.v1.html(f"""
+<div id="lightbox-overlay">
+  <div id="lightbox-content">
+    <button id="lb-prev" class="lb-btn" aria-label="Previous">‹</button>
+    <img id="lightbox-img" src="" alt=""/>
+    <button id="lb-next" class="lb-btn" aria-label="Next">›</button>
+    <button id="lb-close" aria-label="Close">✕</button>
+  </div>
+</div>
+
+<script>
+(function() {{
+  const IMAGES = {images_json};
+  const overlay = document.getElementById('lightbox-overlay');
+  const imgEl = document.getElementById('lightbox-img');
+  const btnPrev = document.getElementById('lb-prev');
+  const btnNext = document.getElementById('lb-next');
+  const btnClose = document.getElementById('lb-close');
+
+  let currentGroup = null;
+  let currentIndex = 0;
+
+  function show(group, index) {{
+    const list = IMAGES[group] || [];
+    if (!list.length) return;
+    currentGroup = group;
+    currentIndex = Math.max(0, Math.min(index, list.length - 1));
+    imgEl.src = list[currentIndex];
+    overlay.classList.add('show');
+  }}
+
+  function hide() {{
+    overlay.classList.remove('show');
+    setTimeout(() => {{ imgEl.src = ''; }}, 200);
+  }}
+
+  function next() {{
+    if (!currentGroup) return;
+    const list = IMAGES[currentGroup] || [];
+    currentIndex = (currentIndex + 1) % list.length;
+    imgEl.src = list[currentIndex];
+  }}
+
+  function prev() {{
+    if (!currentGroup) return;
+    const list = IMAGES[currentGroup] || [];
+    currentIndex = (currentIndex - 1 + list.length) % list.length;
+    imgEl.src = list[currentIndex];
+  }}
+
+  // Click bindings on images
+  function bindImages() {{
+    const imgs = document.querySelectorAll('img.sac-img');
+    imgs.forEach((el) => {{
+      el.addEventListener('click', (e) => {{
+        const group = el.getAttribute('data-group');
+        // Use 0 as index because we render only the selected image per group in the grid;
+        // the full set is available in IMAGES[group] for navigation.
+        show(group, 0);
+      }});
+      // Title tooltip (quick fact): show first 80 chars of the item's name
+      const group = el.getAttribute('data-group');
+      if (group) {{
+        el.title = group.replaceAll('_',' ').replace(/\\b\\w/g, c => c.toUpperCase());
+      }}
+    }});
+  }}
+
+  // Controls
+  btnPrev.addEventListener('click', prev);
+  btnNext.addEventListener('click', next);
+  btnClose.addEventListener('click', hide);
+  overlay.addEventListener('click', (e) => {{
+    if (e.target === overlay) hide();
+  }});
+
+  // Keyboard
+  document.addEventListener('keydown', (e) => {{
+    if (!overlay.classList.contains('show')) return;
+    if (e.key === 'Escape') hide();
+    else if (e.key === 'ArrowRight') next();
+    else if (e.key === 'ArrowLeft') prev();
+  }});
+
+  // Touch swipe
+  let touchStartX = 0;
+  imgEl.addEventListener('touchstart', (e) => {{
+    touchStartX = e.changedTouches[0].screenX;
+  }});
+  imgEl.addEventListener('touchend', (e) => {{
+    const dx = e.changedTouches[0].screenX - touchStartX;
+    if (Math.abs(dx) > 40) {{
+      if (dx < 0) next(); else prev();
+    }}
+  }});
+
+  // Initial bind + slight delay for Streamlit rerenders
+  bindImages();
+  // Rebind after Streamlit updates the DOM
+  const mo = new MutationObserver(() => bindImages());
+  mo.observe(document.body, {{ childList: true, subtree: true }});
+}})();
+</script>
+""", height=0)
