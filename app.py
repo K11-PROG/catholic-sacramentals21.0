@@ -151,6 +151,16 @@ Worn around the waist, they symbolize purity, fidelity, and special petitions fo
     "scapular": """The scapular developed from monastic habits. The Brown Scapular, linked to Our Lady of Mount Carmel in the 13th century, became a sign of Marian devotion and consecration.""",
     "monstrance": """Monstrances developed in the 13th century to display the consecrated Host during adoration and processions.
 
+    The Monstrance also was known as the Ostensorium in accordance with its etymology. It is the vessel used in the Roman Catholic Church for the more convenient exhibition of some object of piety.  Such as the consecrated Eucharistic host during Eucharistic adoration or Benediction of the Blessed Sacrament. This word monstrance comes from the Latin word “monstrare” while the word ostensorium came from the Latin word “ostendere”.
+
+    Both terms, mean “to show”, are used for vessels intended for the exposition of the Blessed Sacrament, but ostensorium has only this meaning.[In the Catholic tradition, at the moment of consecration the elements (called “gifts” for liturgical purposes) are transformed (literally transubstantiated) into the body and blood of Christ. Both the name ostensorium and the kindred word monstrance were originally referred to all kinds of vessels of goldsmith’s or silversmith’s work in which glass, crystal, and so on were so used to distinguish contents from another – Whether the object thus honoured were the Sacred Host itself or only the relic of some saint. Modern times has limited both terms to vessels intended for the exposition of the Blessed Sacrament, and it is in this sense only that we use ostensorium/Monstrance.
+
+    Monstrances are usually different in design. Most of them are carried by the priest. Others may be fixed at a place, typically for displaying the host in a special side or a chapel, often called the “Chapel of the Blessed Sacrament”. For portable designs, the preferred form is a sunburst on a stand, usually topped by a cross.
+
+During Medieval times, monstrances were more varied in form than contemporary ones. Those used for relics, and occasionally for the host, typically had a crystal cylinder in a golden stand, while those usually used for hosts had a crystal window in a flat-faced golden construction, which could stand on its base.
+
+In the centre of the sunburst, the monstrance normally has a small round glass the size of a Host, through which the Blessed Sacrament can be seen. Behind this glass is a round container made of glass and gilded metal, called a lunette. This holds the Host securely in place. When not in the monstrance, the Host in its luna is placed in a special standing container, called a standing pyx, in the Tabernacle.
+
 Often gilded and radiant, they emphasize Christ’s Real Presence and became common after Corpus Christi was established in 1264.""",
     "eucharistic_host": """The Eucharistic Host, unleavened bread, becomes the Body of Christ at the consecration.
 
