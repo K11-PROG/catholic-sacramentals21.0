@@ -112,14 +112,14 @@ The custom dates back to the 4th century in Jerusalem and spread throughout Chri
 Its fragrant smoke signifies reverence and prayer.""",
     "relic": """Relics have been venerated since the 2nd century, with martyrs’ graves becoming pilgrimage sites.
 
-The Council of Trent affirmed their use, and they remain integral to altars and devotions.
-
 The earliest Christian references to relics can be found in the New Testament. For example, in the Acts of the Apostles, it is noted that handkerchiefs that touched St. Paul were able to heal the sick. This scriptural basis established the belief that physical objects associated with saints could carry divine grace.
 
 Catholic relics are categorized into three classes. 
 First Class Relics, actual physical remains of a saint (e.g., bones).
 Second Class Relics, items that belonged to or were used by a saint (e.g., clothing).
-Third Class Relics, objects that have touched a first or second class relic (e.g., small pieces of cloth).""",
+Third Class Relics, objects that have touched a first or second class relic (e.g., small pieces of cloth).
+
+The practice of relic veneration was formally recognized and regulated by the Church over time. The Second Council of Nicaea in 787 decreed that relics should be used to consecrate churches, further embedding their significance in Catholic worship. The Council of Trent (1545 and 1563) affirmed their use, and they remain integral to altars and devotions.""",
     "rosary": """The rosary’s origins lie in the 12th-13th century, with Dominican promotion by St. Dominic.
 
 It unites vocal prayer and meditation on Christ’s life and Mary’s role, a devotion embraced worldwide.""",
