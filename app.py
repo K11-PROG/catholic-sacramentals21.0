@@ -25,11 +25,13 @@ DESC = {
 In our present liturgy for Ash Wednesday, we use ashes made from the burned palm branches distributed on the Palm Sunday of the previous year. The priest blesses the ashes and imposes them on the foreheads of the faithful, making the sign of the cross and saying, “Remember, man you are dust and to dust you shall return,” or “Turn away from sin and be faithful to the Gospel.”
 
 When we begin the holy season of Lent in preparation for Easter, we mourn and do penance for our sins, convert our hearts to the Lord, renew baptismal promises, and look forward to the kingdom of God.""",
-    "bible": """The Bible, meaning 'books,' is a library of sacred writings. It consists of the Old Testament and the New Testament.
+    "bible": """The Bible, meaning 'books,' is a library of sacred writings. It consists of the Old Testament and the New Testament. The Bible originated as a collection of religious texts written over many centuries, primarily in Hebrew, Aramaic, and Greek.
 
 The Old Testament is the Hebrew Bible as interpreted among the various branches of Christianity. The New Testament contains the four Gospels (Matthew, Mark, Luke, and John), Acts, 21 letters, and Revelation.
 
-The Gospels narrate the life, death, and teachings of Jesus Christ. The Bible is viewed as the inspired word of God and a guide for Christian living. Catholic editions include the Deuterocanonical books, preserved by the Septuagint. Since the earliest centuries, illuminated manuscripts and later printed Bibles were treasured, forming the foundation of Christian teaching.""",
+The Gospels narrate the life, death, and teachings of Jesus Christ. The Bible is viewed as the inspired word of God and a guide for Christian living. Catholic editions include the Deuterocanonical books, preserved by the Septuagint, a Greek translation of the Hebrew Bible, was significant for early Christians. Since the earliest centuries, illuminated manuscripts and later printed Bibles were treasured, forming the foundation of Christian teaching.
+
+The Bible has been translated into over 2,500 languages, making it the most widely distributed book in history. The Bible has profoundly influenced Western culture, literature, and moral thought. Its themes of creation, redemption, and divine justice resonate across various societies and religions.""",
     "blessed_medals": """Blessed medals gained popularity in the early Middle Ages as tokens of faith and protection.
 
 They commemorate saints, events, or Marian devotions and often bear protective inscriptions. The Miraculous Medal originated from St. Catherine Labouré’s visions in 1830, while the St. Benedict Medal dates back at least to the 11th century, inscribed with prayers of exorcism.""",
