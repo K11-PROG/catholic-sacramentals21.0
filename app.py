@@ -90,8 +90,12 @@ They often depict saints or events and were used as catechetical tools.""",
 
 Passing through them symbolizes spiritual renewal and the reception of special indulgences.""",
     "holy_images": """Holy images trace to the earliest Christian catacombs. Icons flourished in the East; statues in the West.
+    
+Veneration in the Catholic faith refers to showing respect or honor to someone or something holy. It is distinct from worship, which is reserved for God alone. When Catholics venerate icons or statues, they are not treating the objects as divine. Instead, they use these images as reminders of God, the Virgin Mary, or the saints. This practice stems from the belief that physical representations can aid spiritual focus.
 
-The Second Council of Nicaea (787) affirmed their veneration, not worship, as windows to the divine.""",
+The use of sacred images in Christianity has roots in the early Church. In the first few centuries, Christians painted images of Christ and the saints in places like the catacombs. These images served as teaching tools for a largely illiterate population. Over time, the practice grew as a way to inspire devotion. By the 4th century, churches began incorporating more artwork to reflect biblical stories. The tradition faced challenges, particularly during the Iconoclastic Controversy in the 8th century. Some argued that images violated the commandment against graven images (Exodus 20:4-5). However, Church leaders defended the practice, emphasizing its spiritual value. This debate led to a formal clarification of the tradition. The early Church saw icons as windows to the divine, not as objects of worship.
+
+The Second Council of Nicaea, held in 787, was a pivotal moment for this tradition. It addressed the Iconoclastic Controversy, where some Byzantine emperors sought to ban religious images. The council affirmed that veneration of icons was legitimate and theologically sound. It clarified that honor given to an image passes to the person it represents. For example, venerating an icon of Christ directs honor to Christ Himself. The council condemned the destruction of icons and upheld their use in worship spaces. This decision relied on both scripture and tradition. The fathers of the council cited John 1:14, which speaks of the Incarnation, as a basis for sacred images. Their ruling shaped Catholic practice for centuries. It remains a cornerstone of the Church’s teaching on this subject.""",
     "holy_oil": """Holy oil has Old Testament roots (Exodus 30). Chrism was mentioned by Church Fathers like Tertullian and Hippolytus.
 
 Consecrated oils are still used in Baptism, Confirmation, Holy Orders, and the Anointing of the Sick.""",
