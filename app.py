@@ -51,9 +51,7 @@ Wearing a Saint Michael medal is a call for his protection against the snares of
 
 Salt was considered a valuable commodity, symbolizing purity and preservation, and was used in sacrifices by the Israelites. By the fourth century, Augustine of Hippo described the use of blessed salt as "visible forms of invisible grace." The Third Council of Carthage in the third century mandated the use of salt for catechumens before baptism. The earliest prayers for blessing salt and water are from Merovingian France, around 600-751 AD.
 
-The Roman Rite of the Catholic Church includes specific prayers for blessing salt, emphasizing its protective and purifying qualities. Blessed salt serves as a sacramental, believed to provide spiritual protection and sanctification. It can be sprinkled in homes or carried for personal protection against evil influences. The practice encourages a deeper connection to faith and the presence of God in daily life.
-
-It recalls Elisha’s purification of water (2 Kings 2:19-22) and symbolizes preservation from corruption and spiritual protection.""",
+The Roman Rite of the Catholic Church includes specific prayers for blessing salt, emphasizing its protective and purifying qualities. Blessed salt serves as a sacramental, believed to provide spiritual protection and sanctification. It can be sprinkled in homes or carried for personal protection against evil influences. The practice encourages a deeper connection to faith and the presence of God in daily life.""",
     "blessing": """Blessings are among the oldest sacramentals, rooted in the Jewish practice of berakhot.
 
 Early Christian communities blessed homes, fields, and travelers. The Roman Pontifical preserved many such prayers, sanctifying daily life.""",
