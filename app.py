@@ -152,7 +152,7 @@ On the night this proclamation was made, the citizens of Ephesus marched through
 
 Since Pope Pius V issued that document, only the Fátima Prayer has been added to the Rosary. The Fátima prayer, given to the Portuguese children during the Fátima apparition in 1917, is widely used, but it is not universal. The Rosary made up of 150 beads, promoted by Pope Pius V, is still subscribed to by the Church but is, of course, different than the popular Rosary with 50 beads that many of us carry in our pockets.
 
-From the 16th century until the 21st century there were three sets of mysteries: the Joyful, the Glorious and the Sorrowful. But in 2002 Pope St. John Paul II added the Mysteries of Light. The intent was to include meditations on the time in Jesus’ life between His incarnation (a Joyful Mystery) and His passion (a Sorrowful Mystery).
+From the 16th century until the 21st century there were three sets of mysteries: the Joyful, the Glorious and the Sorrowful. But in 2002 Pope St. John Paul II added the Mysteries of Light, also known as the Luminous Mysteries. The intent was to include meditations on the time in Jesus’ life between His incarnation (a Joyful Mystery) and His passion (a Sorrowful Mystery).
 
 How many soldiers have repeated the Hail Mary over and over on the battlefield? In our darkest hour, even the hour of our death, we plead for the intercession, the blessing and comfort of the Blessed Mother using this 700-year-old devotion which ends, in part, “Turn then most gracious advocate thine eyes of mercy toward us …”""",
     "cord": """Cords, like the Cord of St. Joseph or St. Philomena, appeared in the 17th century.
