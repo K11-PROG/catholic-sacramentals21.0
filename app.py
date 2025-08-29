@@ -112,7 +112,7 @@ Its smoke symbolizes prayers rising to heaven (Psalm 141:2) and sanctifies the l
 
 Incense has been used in Catholic tradition since ancient times, symbolizing purification and the prayers of the faithful rising to God. Its origins trace back to Jewish worship practices, where it was commanded by God for use in the Tabernacle, and it has been integrated into Christian liturgy since the early Church.
 
-The Bible mentions incense over 170 times, indicating its significance in worship. God commanded the Israelites to burn incense in the Tabernacle, as seen in Exodus 30:1-10.""",
+The Bible mentions incense over 170 times, indicating its significance in worship. God commanded the Israelites to burn incense in the Tabernacle (Exodus 30:1-10).""",
     "liturgical_vestments": """Vestments evolved from Roman attire. By the 5th century, they became distinct for worship.
 
 Colors signify liturgical seasons, and garments like the chasuble and stole symbolize Christ’s yoke and charity.""",
