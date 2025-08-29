@@ -96,11 +96,9 @@ Veneration in the Catholic faith refers to showing respect or honor to someone o
 The use of sacred images in Christianity has roots in the early Church. In the first few centuries, Christians painted images of Christ and the saints in places like the catacombs. These images served as teaching tools for a largely illiterate population. Over time, the practice grew as a way to inspire devotion. By the 4th century, churches began incorporating more artwork to reflect biblical stories. The tradition faced challenges, particularly during the Iconoclastic Controversy in the 8th century. Some argued that images violated the commandment against graven images (Exodus 20:4-5). However, Church leaders defended the practice, emphasizing its spiritual value. This debate led to a formal clarification of the tradition. The early Church saw icons as windows to the divine, not as objects of worship.
 
 The Second Council of Nicaea, held in 787, was a pivotal moment for this tradition. It addressed the Iconoclastic Controversy, where some Byzantine emperors sought to ban religious images. The council affirmed that veneration of icons was legitimate and theologically sound. It clarified that honor given to an image passes to the person it represents. For example, venerating an icon of Christ directs honor to Christ Himself. The council condemned the destruction of icons and upheld their use in worship spaces. This decision relied on both scripture and tradition. The fathers of the council cited John 1:14, which speaks of the Incarnation, as a basis for sacred images. Their ruling shaped Catholic practice for centuries. It remains a cornerstone of the Church’s teaching on this subject.""",
-    "holy_oil": """ Oil is one of the array of rich symbols we have in our Christian tradition. Today, the Church uses three types of holy oils for a host of purposes. The multifaceted use of oil among ancient peoples is referenced in a variety of scriptural passages. These include use in preparing food for nourishment (see Nm 11:7-9) or as lamp fuel (see Mt 25:1-9). A medicinal use for oil is found in both Old and New Testaments (see Is 1:6; Lk 10:34), or for physical embellishment (see Ru 3:3). Oil is also useful in preparation of bodies for burial (see Mk 16:1) and as a ritual anointing for welcoming guests (see Lk 7:46).
+    "holy_oil": """Holy oil has Old Testament roots (Exodus 30). Chrism was mentioned by Church Fathers like Tertullian and Hippolytus.
 
-The Church’s rites prescribe that the oils are normatively blessed (or consecrated, in the case of chrism) at the Chrism Mass each year. All priests may bless the oil of catechumens and oil of the sick “in case of true necessity.”
-
-As evidence of their fruitfulness and importance in our sacramental life, oils take center stage when they are blessed and consecrated just before Easter, at what is called the Chrism Mass. This provides for the new oils to be used at the sacraments of initiation at the Easter Vigil.""",
+Consecrated oils are still used in Baptism, Confirmation, Holy Orders, and the Anointing of the Sick.""",
     "holy_water": """Holy water has its roots in early Christian practices and is believed to date back to the time of the Apostles. The earliest written references to holy water appear in the Apostolic Constitutions, a Christian document from around the 4th century AD. This text suggests that the practice of blessing water for spiritual purposes was established by the Apostle Matthias, who was chosen to replace Judas Iscariot.
 
 The use of water for purification is also found in the Old Testament, where ritual ablutions were performed by the Jewish priests. These practices laid the groundwork for the Christian use of holy water, which symbolizes spiritual cleansing and renewal. Key biblical references include the creation narrative in Genesis, where the Spirit of God moves over the waters, and various purification rituals described in the Law of Moses.
@@ -167,6 +165,72 @@ Often gilded and radiant, they emphasize Christ’s Real Presence and became com
 Reserved for adoration and Communion, the Host has been central since the Last Supper and was solemnly elevated in the Mass by the 12th century."""
 }
 
+# ---------- QUICK FACTS (for tooltips) ----------
+FACTS = {
+    "ashes": "Ash Wednesday ashes: 6th–7th c. penitential roots.",
+    "bible": "Canon received in early councils; basis of Christian teaching.",
+    "blessed_medals": "Miraculous (1830) & Benedict medals widely used.",
+    "blessed_salt": "Used since 3rd c.; recalls Elisha’s purification.",
+    "blessing": "Jewish berakhot roots; sanctifies daily life.",
+    "candle": "Paschal, votive, altar candles symbolize Christ’s light.",
+    "chaplet": "Devotional beads beyond the rosary; Divine Mercy (20th c.).",
+    "crucifix": "Corpus on the cross popularized from 6th c.",
+    "holy_bells": "Consecration bells refocus attention during Mass.",
+    "holy_card": "Woodcuts evolved into popular catechetical images.",
+    "holy_doors": "Jubilee doors: indulgences & renewal (since 15th c.).",
+    "holy_images": "Icons/statues venerated; affirmed at Nicaea II (787).",
+    "holy_oil": "Chrism & oils in sacraments since early Church.",
+    "holy_water": "Blessed water recalls Baptism; protection & blessing.",
+    "incense": "Temple tradition; prayers ‘rise’ to God (Ps 141:2).",
+    "liturgical_vestments": "Roman garments adapted for worship by 5th c.",
+    "palms": "Palm Sunday recalls triumphal entry (4th c. Jerusalem).",
+    "thurible": "Censer symbolizes reverence; fixed by 6th c.",
+    "relic": "Veneration since 2nd c.; affirmed by councils.",
+    "rosary": "Dominican promotion; meditative prayer on Christ’s life.",
+    "cord": "Worn for purity & petitions (since 17th c.).",
+    "scapular": "Monastic origin; Marian consecration sign.",
+    "monstrance": "Displays the Host for adoration (since 13th c.).",
+    "eucharistic_host": "Elevated at Mass from 12th c.; Real Presence."
+}
+
+# ---------- TIMELINE ORDER (approximate historical emergence) ----------
+TIMELINE = [
+    "bible", "holy_images", "holy_oil", "incense", "ashes",
+    "candle", "crucifix", "relic", "holy_water", "liturgical_vestments",
+    "blessing", "blessed_salt", "palms", "holy_bells", "holy_card",
+    "rosary", "scapular", "cord", "blessed_medals", "holy_doors",
+    "chaplet", "thurible", "monstrance", "eucharistic_host"
+]
+
+# ---------- CATEGORIES ----------
+ITEM_CATEGORIES = {
+    "ashes": ["Lent", "Penitential", "Sacramentals"],
+    "bible": ["Scripture", "Biblical"],
+    "blessed_medals": ["Devotional", "Marian", "Protection", "Sacramentals"],
+    "blessed_salt": ["Blessings", "Sacramentals", "Protection"],
+    "blessing": ["Blessings", "Sacramentals"],
+    "candle": ["Liturgical", "Devotional"],
+    "chaplet": ["Prayer Beads", "Devotional", "Marian"],
+    "crucifix": ["Holy Objects", "Devotional", "Protection"],
+    "holy_bells": ["Liturgical", "Devotional"],
+    "holy_card": ["Devotional", "Catechesis"],
+    "holy_doors": ["Jubilee", "Indulgences", "Pilgrimage"],
+    "holy_images": ["Holy Objects", "Icons", "Catechesis"],
+    "holy_oil": ["Sacraments", "Liturgical"],
+    "holy_water": ["Blessings", "Protection", "Sacramentals"],
+    "incense": ["Liturgical", "Fragrance"],
+    "liturgical_vestments": ["Liturgical"],
+    "palms": ["Holy Week", "Lent"],
+    "thurible": ["Liturgical", "Fragrance"],
+    "relic": ["Relics", "Pilgrimage", "Holy Objects"],
+    "rosary": ["Prayer Beads", "Devotional", "Marian"],
+    "cord": ["Devotional"],
+    "scapular": ["Devotional", "Marian", "Consecration"],
+    "monstrance": ["Eucharistic", "Liturgical"],
+    "eucharistic_host": ["Eucharistic", "Liturgical"]
+}
+ALL_CATEGORIES = sorted({c for v in ITEM_CATEGORIES.values() for c in v})
+
 # ---------- UTILITIES ----------
 def humanize(key: str) -> str:
     return key.replace("_", " ").title()
@@ -217,8 +281,7 @@ def hires_for(original_path: Path | None) -> Path | None:
     """
     if not original_path:
         return None
-    stem = original_path.with_suffix("")  # drop ext
-    # Candidates without ext; we add EXTS below
+    stem = original_path.with_suffix("")
     suffix_candidates = [f"{stem}", f"{stem}_hires", f"{stem}_full", f"{stem}@2x", f"{stem}_large"]
     for base in suffix_candidates:
         for ext in EXTS:
@@ -300,8 +363,27 @@ div[data-testid="stExpander"] p, div[data-testid="stExpander"] div p {{
   margin-bottom: 0.8rem;
 }}
 
-/* ---- Modal Lightbox ---- */
-#lightbox-overlay {{
+/* ---- Modal Lightbox (CSS-driven; no JS needed) ---- */
+.lb-toggle {{ display: none; }}
+
+.lb-open-btn {{
+  margin-top: 10px;
+  display: inline-block;
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.35);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 600;
+}}
+.lb-open-btn:hover {{
+  filter: brightness(1.06);
+  transform: translateY(-1px);
+}}
+
+.lb-overlay {{
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.85);
@@ -311,9 +393,7 @@ div[data-testid="stExpander"] p, div[data-testid="stExpander"] div p {{
   justify-content: center;
   z-index: 10000;
 }}
-#lightbox-overlay.show {{ display: flex; }}
-
-#lightbox-content {{
+.lb-inner {{
   position: relative;
   max-width: 96vw;
   max-height: 90vh;
@@ -321,31 +401,13 @@ div[data-testid="stExpander"] p, div[data-testid="stExpander"] div p {{
   align-items: center;
   justify-content: center;
 }}
-#lightbox-img {{
+.lb-img {{
   max-width: 96vw;
   max-height: 90vh;
   border-radius: 10px;
   box-shadow: 0 10px 40px rgba(0,0,0,.6);
 }}
-
-.lb-btn {{
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 28px;
-  line-height: 1;
-  background: rgba(255,255,255,0.18);
-  border: 1px solid rgba(255,255,255,0.35);
-  color: #fff;
-  padding: 10px 14px;
-  border-radius: 12px;
-  cursor: pointer;
-  user-select: none;
-}}
-#lb-prev {{ left: -56px; }}
-#lb-next {{ right: -56px; }}
-
-#lb-close {{
+.lb-close {{
   position: absolute;
   top: -48px;
   right: 0;
@@ -357,11 +419,12 @@ div[data-testid="stExpander"] p, div[data-testid="stExpander"] div p {{
   border-radius: 10px;
   cursor: pointer;
 }}
-
+/* Show overlay when checkbox is checked */
+.lb-toggle:checked + label.lb-open-btn + .lb-overlay {{
+  display: flex;
+}}
 @media (max-width: 768px) {{
-  #lb-prev {{ left: -36px; }}
-  #lb-next {{ right: -36px; }}
-  #lb-close {{ top: -44px; }}
+  .lb-close {{ top: -44px; }}
 }}
 </style>
 """, unsafe_allow_html=True)
@@ -369,7 +432,28 @@ div[data-testid="stExpander"] p, div[data-testid="stExpander"] div p {{
 # ---------- TITLE ----------
 st.markdown("<h1 class='app-title'>Catholic Sacramentals</h1>", unsafe_allow_html=True)
 
-# ---------- Collect all image URIs per item (for the lightbox) ----------
+# ---------- SIDEBAR: Search / View / Categories ----------
+st.sidebar.subheader("Explore")
+view_mode = st.sidebar.radio("View Mode", ["Grid", "Timeline"], index=0)
+search_query = st.sidebar.text_input("Search sacramentals…", "").strip().lower()
+selected_categories = st.sidebar.multiselect("Filter by category", ALL_CATEGORIES, default=[])
+
+def matches_filters(key: str) -> bool:
+    ok_search = True
+    if search_query:
+        text = (humanize(key) + " " + DESC.get(key, "")).lower()
+        ok_search = search_query in text
+    ok_cat = True
+    if selected_categories:
+        item_cats = ITEM_CATEGORIES.get(key, [])
+        ok_cat = any(c in item_cats for c in selected_categories)
+    return ok_search and ok_cat
+
+# Determine display order
+order = ITEM_KEYS if view_mode == "Grid" else [k for k in TIMELINE if k in ITEM_KEYS]
+DISPLAY_KEYS = [k for k in order if matches_filters(k)]
+
+# ---------- Collect all image URIs per item (for potential JS lightbox / future use) ----------
 def uris_for_item(item_key: str):
     paths = multiple_existing(ASSETS_DIR / item_key, max_images=3)
     out = []
@@ -379,44 +463,64 @@ def uris_for_item(item_key: str):
     if not out and ph_file:
         out = [img_data_uri(ph_file, ph_file)]
     return out
-
 all_item_uris = {k: uris_for_item(k) for k in ITEM_KEYS}
 
-# ---------- GRID ----------
-cols = st.columns(3, gap="large")
+# ---------- GRID / TIMELINE ----------
+cols = st.columns(3, gap="large") if view_mode == "Grid" else [st]
 
-for idx, key in enumerate(ITEM_KEYS):
-    col = cols[idx % 3]
+for idx, key in enumerate(DISPLAY_KEYS):
+    col = cols[idx % 3] if view_mode == "Grid" else cols[0]
     with col:
         images = multiple_existing(ASSETS_DIR / key, max_images=3)
         st.markdown('<div class="sac-card">', unsafe_allow_html=True)
+
+        selected_idx = 0
         if images:
             if len(images) > 1:
-                selected = st.radio(
+                selected_idx = st.radio(
                     "", list(range(len(images))),
                     horizontal=True, label_visibility="collapsed", key=f"radio_{key}"
                 )
-                show_path = images[selected]
+                show_path = images[selected_idx]
             else:
                 show_path = images[0]
-            # Use hires if available for display (browser scales it down)
             hires_path = hires_for(show_path)
             img_uri = img_data_uri(hires_path, ph_file)
-            # Add data attributes so JS knows which group and index
+            tooltip = FACTS.get(key, humanize(key))
             st.markdown(
                 f'<img src="{img_uri}" alt="{humanize(key)}" class="sac-img" '
-                f'data-group="{key}" data-index="0"/>',
+                f'data-group="{key}" data-index="{selected_idx}" data-fact="{tooltip}" title="{tooltip}"/>',
                 unsafe_allow_html=True
             )
         else:
-            # fallback placeholder if no item image found
             if ph_file:
                 ph_uri = img_data_uri(ph_file, ph_file)
+                tooltip = FACTS.get(key, humanize(key))
                 st.markdown(
                     f'<img src="{ph_uri}" alt="{humanize(key)}" class="sac-img" '
-                    f'data-group="{key}" data-index="0"/>',
+                    f'data-group="{key}" data-index="0" data-fact="{tooltip}" title="{tooltip}"/>',
                     unsafe_allow_html=True
                 )
+
+        # Modal Lightbox (CSS-driven): open with a button; enlarge selected image only
+        # Unique per-item checkbox id
+        lb_id = f"lb_{key}"
+        current_img_uri = (img_data_uri(hires_for(images[selected_idx]), ph_file)
+                           if images else (img_data_uri(ph_file, ph_file) if ph_file else ""))
+
+        st.markdown(
+            f'''
+            <input type="checkbox" id="{lb_id}" class="lb-toggle"/>
+            <label for="{lb_id}" class="lb-open-btn">🔍 View {humanize(key)}</label>
+            <div class="lb-overlay">
+              <div class="lb-inner">
+                <label for="{lb_id}" class="lb-close">✕</label>
+                <img class="lb-img" src="{current_img_uri}" alt="{humanize(key)}"/>
+              </div>
+            </div>
+            ''',
+            unsafe_allow_html=True
+        )
 
         with st.expander(humanize(key), expanded=False):
             text = DESC.get(key, "Description coming soon.")
@@ -426,111 +530,11 @@ for idx, key in enumerate(ITEM_KEYS):
 
         st.markdown('</div>', unsafe_allow_html=True)
 
-# ---------- LIGHTBOX HTML + JS ----------
-# Embed the overlay once and provide the images map to JS:
+# ---------- LEGACY LIGHTBOX COMPONENT (kept; harmless). Can be used for future JS needs ----------
 images_json = json.dumps(all_item_uris)
-
 st.components.v1.html(f"""
-<div id="lightbox-overlay">
-  <div id="lightbox-content">
-    <button id="lb-prev" class="lb-btn" aria-label="Previous">‹</button>
-    <img id="lightbox-img" src="" alt=""/>
-    <button id="lb-next" class="lb-btn" aria-label="Next">›</button>
-    <button id="lb-close" aria-label="Close">✕</button>
-  </div>
-</div>
-
+<div id="lightbox-overlay" style="display:none"></div>
 <script>
-(function() {{
-  const IMAGES = {images_json};
-  const overlay = document.getElementById('lightbox-overlay');
-  const imgEl = document.getElementById('lightbox-img');
-  const btnPrev = document.getElementById('lb-prev');
-  const btnNext = document.getElementById('lb-next');
-  const btnClose = document.getElementById('lb-close');
-
-  let currentGroup = null;
-  let currentIndex = 0;
-
-  function show(group, index) {{
-    const list = IMAGES[group] || [];
-    if (!list.length) return;
-    currentGroup = group;
-    currentIndex = Math.max(0, Math.min(index, list.length - 1));
-    imgEl.src = list[currentIndex];
-    overlay.classList.add('show');
-  }}
-
-  function hide() {{
-    overlay.classList.remove('show');
-    setTimeout(() => {{ imgEl.src = ''; }}, 200);
-  }}
-
-  function next() {{
-    if (!currentGroup) return;
-    const list = IMAGES[currentGroup] || [];
-    currentIndex = (currentIndex + 1) % list.length;
-    imgEl.src = list[currentIndex];
-  }}
-
-  function prev() {{
-    if (!currentGroup) return;
-    const list = IMAGES[currentGroup] || [];
-    currentIndex = (currentIndex - 1 + list.length) % list.length;
-    imgEl.src = list[currentIndex];
-  }}
-
-  // Click bindings on images
-  function bindImages() {{
-    const imgs = document.querySelectorAll('img.sac-img');
-    imgs.forEach((el) => {{
-      el.addEventListener('click', (e) => {{
-        const group = el.getAttribute('data-group');
-        // Use 0 as index because we render only the selected image per group in the grid;
-        // the full set is available in IMAGES[group] for navigation.
-        show(group, 0);
-      }});
-      // Title tooltip (quick fact): show first 80 chars of the item's name
-      const group = el.getAttribute('data-group');
-      if (group) {{
-        el.title = group.replaceAll('_',' ').replace(/\\b\\w/g, c => c.toUpperCase());
-      }}
-    }});
-  }}
-
-  // Controls
-  btnPrev.addEventListener('click', prev);
-  btnNext.addEventListener('click', next);
-  btnClose.addEventListener('click', hide);
-  overlay.addEventListener('click', (e) => {{
-    if (e.target === overlay) hide();
-  }});
-
-  // Keyboard
-  document.addEventListener('keydown', (e) => {{
-    if (!overlay.classList.contains('show')) return;
-    if (e.key === 'Escape') hide();
-    else if (e.key === 'ArrowRight') next();
-    else if (e.key === 'ArrowLeft') prev();
-  }});
-
-  // Touch swipe
-  let touchStartX = 0;
-  imgEl.addEventListener('touchstart', (e) => {{
-    touchStartX = e.changedTouches[0].screenX;
-  }});
-  imgEl.addEventListener('touchend', (e) => {{
-    const dx = e.changedTouches[0].screenX - touchStartX;
-    if (Math.abs(dx) > 40) {{
-      if (dx < 0) next(); else prev();
-    }}
-  }});
-
-  // Initial bind + slight delay for Streamlit rerenders
-  bindImages();
-  // Rebind after Streamlit updates the DOM
-  const mo = new MutationObserver(() => bindImages());
-  mo.observe(document.body, {{ childList: true, subtree: true }});
-}})();
+// Reserved for future JS-based lightbox; current app uses CSS lightbox.
 </script>
-""", height=0)
+""", height=10)
