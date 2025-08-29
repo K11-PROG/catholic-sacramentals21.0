@@ -110,9 +110,15 @@ Its smoke symbolizes prayers rising to heaven (Psalm 141:2) and sanctifies the l
     "liturgical_vestments": """Vestments evolved from Roman attire. By the 5th century, they became distinct for worship.
 
 Colors signify liturgical seasons, and garments like the chasuble and stole symbolize Christ’s yoke and charity.""",
-    "palms": """Palms, blessed on Palm Sunday, recall Christ’s entry into Jerusalem.
+    "palms": """Palms in the Catholic tradition originate from the biblical account of Jesus' triumphal entry into Jerusalem, where crowds greeted him by laying down palm branches. This practice has evolved into the celebration of Palm Sunday, marking the beginning of Holy Week, where blessed palms are distributed to the faithful during Mass.
 
-The custom dates back to the 4th century in Jerusalem and spread throughout Christendom as a sign of victory and hope.""",
+The event is mentioned in all four canonical Gospels, highlighting its importance in Christian tradition.
+Jesus rode into Jerusalem on a donkey, symbolizing peace, as opposed to a horse, which would signify war.
+
+The palms symbolize victory, peace, and eternal life. They are often woven into crosses and displayed in homes as reminders of faith.
+After Palm Sunday, the palms should not be discarded. Instead, they are treated with reverence and can be burned or buried when no longer needed.
+
+This rich tradition emphasizes the significance of palms in the context of faith and community, serving as a reminder of Jesus' message of peace and salvation.""",
     "thurible": """The thurible or censer holds burning charcoal and incense. Its use mirrors Jewish Temple worship and became a fixed part of Christian liturgy by the 6th century.
 
 Its fragrant smoke signifies reverence and prayer.
