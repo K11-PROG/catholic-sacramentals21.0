@@ -108,7 +108,11 @@ The use of water for purification is also found in the Old Testament, where ritu
 In the Catholic tradition, holy water is typically blessed by a priest, often using a mixture of water and blessed salt. This process is rooted in the belief that water, as a sacred element, can convey God's grace and protection. The blessing of holy water is accompanied by prayers that invoke divine assistance and protection against evil.""",
     "incense": """Incense was offered in the Temple of Jerusalem and adopted by Christians by the 4th century.
 
-Its smoke symbolizes prayers rising to heaven (Psalm 141:2) and sanctifies the liturgy.""",
+Its smoke symbolizes prayers rising to heaven (Psalm 141:2) and sanctifies the liturgy.
+
+Incense has been used in Catholic tradition since ancient times, symbolizing purification and the prayers of the faithful rising to God. Its origins trace back to Jewish worship practices, where it was commanded by God for use in the Tabernacle, and it has been integrated into Christian liturgy since the early Church.
+
+The Bible mentions incense over 170 times, indicating its significance in worship. God commanded the Israelites to burn incense in the Tabernacle, as seen in Exodus 30:1-10.""",
     "liturgical_vestments": """Vestments evolved from Roman attire. By the 5th century, they became distinct for worship.
 
 Colors signify liturgical seasons, and garments like the chasuble and stole symbolize Christ’s yoke and charity.""",
