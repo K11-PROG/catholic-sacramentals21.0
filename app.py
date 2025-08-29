@@ -171,6 +171,72 @@ Often gilded and radiant, they emphasize Christ’s Real Presence and became com
 Reserved for adoration and Communion, the Host has been central since the Last Supper and was solemnly elevated in the Mass by the 12th century."""
 }
 
+# ---------- QUICK FACTS (for tooltips) ----------
+FACTS = {
+    "ashes": "Ash Wednesday ashes: 6th–7th c. penitential roots.",
+    "bible": "Canon received in early councils; basis of Christian teaching.",
+    "blessed_medals": "Miraculous (1830) & Benedict medals widely used.",
+    "blessed_salt": "Used since 3rd c.; recalls Elisha’s purification.",
+    "blessing": "Jewish berakhot roots; sanctifies daily life.",
+    "candle": "Paschal, votive, altar candles symbolize Christ’s light.",
+    "chaplet": "Devotional beads beyond the rosary; Divine Mercy (20th c.).",
+    "crucifix": "Corpus on the cross popularized from 6th c.",
+    "holy_bells": "Consecration bells refocus attention during Mass.",
+    "holy_card": "Woodcuts evolved into popular catechetical images.",
+    "holy_doors": "Jubilee doors: indulgences & renewal (since 15th c.).",
+    "holy_images": "Icons/statues venerated; affirmed at Nicaea II (787).",
+    "holy_oil": "Chrism & oils in sacraments since early Church.",
+    "holy_water": "Blessed water recalls Baptism; protection & blessing.",
+    "incense": "Temple tradition; prayers ‘rise’ to God (Ps 141:2).",
+    "liturgical_vestments": "Roman garments adapted for worship by 5th c.",
+    "palms": "Palm Sunday recalls triumphal entry (4th c. Jerusalem).",
+    "thurible": "Censer symbolizes reverence; fixed by 6th c.",
+    "relic": "Veneration since 2nd c.; affirmed by councils.",
+    "rosary": "Dominican promotion; meditative prayer on Christ’s life.",
+    "cord": "Worn for purity & petitions (since 17th c.).",
+    "scapular": "Monastic origin; Marian consecration sign.",
+    "monstrance": "Displays the Host for adoration (since 13th c.).",
+    "eucharistic_host": "Elevated at Mass from 12th c.; Real Presence."
+}
+
+# ---------- TIMELINE ORDER (approximate historical emergence) ----------
+TIMELINE = [
+    "bible", "holy_images", "holy_oil", "incense", "ashes",
+    "candle", "crucifix", "relic", "holy_water", "liturgical_vestments",
+    "blessing", "blessed_salt", "palms", "holy_bells", "holy_card",
+    "rosary", "scapular", "cord", "blessed_medals", "holy_doors",
+    "chaplet", "thurible", "monstrance", "eucharistic_host"
+]
+
+# ---------- CATEGORIES ----------
+ITEM_CATEGORIES = {
+    "ashes": ["Lent", "Penitential", "Sacramentals"],
+    "bible": ["Scripture", "Biblical"],
+    "blessed_medals": ["Devotional", "Marian", "Protection", "Sacramentals"],
+    "blessed_salt": ["Blessings", "Sacramentals", "Protection"],
+    "blessing": ["Blessings", "Sacramentals"],
+    "candle": ["Liturgical", "Devotional"],
+    "chaplet": ["Prayer Beads", "Devotional", "Marian"],
+    "crucifix": ["Holy Objects", "Devotional", "Protection"],
+    "holy_bells": ["Liturgical", "Devotional"],
+    "holy_card": ["Devotional", "Catechesis"],
+    "holy_doors": ["Jubilee", "Indulgences", "Pilgrimage"],
+    "holy_images": ["Holy Objects", "Icons", "Catechesis"],
+    "holy_oil": ["Sacraments", "Liturgical"],
+    "holy_water": ["Blessings", "Protection", "Sacramentals"],
+    "incense": ["Liturgical", "Fragrance"],
+    "liturgical_vestments": ["Liturgical"],
+    "palms": ["Holy Week", "Lent"],
+    "thurible": ["Liturgical", "Fragrance"],
+    "relic": ["Relics", "Pilgrimage", "Holy Objects"],
+    "rosary": ["Prayer Beads", "Devotional", "Marian"],
+    "cord": ["Devotional"],
+    "scapular": ["Devotional", "Marian", "Consecration"],
+    "monstrance": ["Eucharistic", "Liturgical"],
+    "eucharistic_host": ["Eucharistic", "Liturgical"]
+}
+ALL_CATEGORIES = sorted({c for v in ITEM_CATEGORIES.values() for c in v})
+
 # ---------- UTILITIES ----------
 def humanize(key: str) -> str:
     return key.replace("_", " ").title()
@@ -214,6 +280,11 @@ def img_data_uri(path: Path | None, fallback: Path | None) -> str:
     return ""
 
 def hires_for(original_path: Path | None) -> Path | None:
+    """
+    Try to locate a higher-resolution alternative near the original:
+    name_hires, name_full, name@2x, name_large (same extension priority order).
+    Falls back to original if none found.
+    """
     if not original_path:
         return None
     stem = original_path.with_suffix("")
@@ -233,7 +304,7 @@ bg_uri = img_data_uri(bg_file, ph_file)
 # ---------- STYLES ----------
 st.markdown(f"""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=Cinzel+Decorative:wght@700&display=swap');
 
 .stApp {{
   background-image: linear-gradient(rgba(10,10,20,0.55), rgba(10,10,20,0.55)), url('{bg_uri}');
@@ -244,11 +315,18 @@ st.markdown(f"""
 }}
 
 h1.app-title {{
-  font-family: 'IM Fell English SC', serif;
+  font-family: 'IM Fell English SC', 'Cinzel Decorative', serif;
   text-align: center;
   color: #fff;
   text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+  letter-spacing: 0.5px;
+  margin: 10px 0 24px 0;
   font-size: 2.4rem;
+}}
+
+section.main > div.block-container {{
+  padding-top: 1.0rem;
+  padding-bottom: 4.0rem;
 }}
 
 .sac-card {{
@@ -267,6 +345,7 @@ h1.app-title {{
   display: block;
   border-radius: 12px;
   transition: transform .3s ease, filter .3s ease, box-shadow .3s ease;
+  box-shadow: 0 0 0 rgba(255,255,255,0);
   cursor: zoom-in;
 }}
 .sac-img:hover {{
@@ -274,13 +353,113 @@ h1.app-title {{
   filter: brightness(1.06);
   box-shadow: 0 14px 34px rgba(255,255,220,0.3);
 }}
+
+div[data-testid="stExpander"] > details {{
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}}
+div[data-testid="stExpander"] summary {{
+  color: #fff;
+  font-weight: 700;
+}}
+div[data-testid="stExpander"] p, div[data-testid="stExpander"] div p {{
+  color: #f2f2f2;
+  line-height: 1.5;
+  margin-bottom: 0.8rem;
+}}
+
+/* ---- Modal Lightbox (CSS-driven; no JS needed) ---- */
+.lb-toggle {{ display: none; }}
+
+.lb-open-btn {{
+  margin-top: 10px;
+  display: inline-block;
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.35);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 600;
+}}
+.lb-open-btn:hover {{
+  filter: brightness(1.06);
+  transform: translateY(-1px);
+}}
+
+.lb-overlay {{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(2px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}}
+.lb-inner {{
+  position: relative;
+  max-width: 96vw;
+  max-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}}
+.lb-img {{
+  max-width: 96vw;
+  max-height: 90vh;
+  border-radius: 10px;
+  box-shadow: 0 10px 40px rgba(0,0,0,.6);
+}}
+.lb-close {{
+  position: absolute;
+  top: -48px;
+  right: 0;
+  font-size: 26px;
+  background: rgba(255,255,255,0.22);
+  border: 1px solid rgba(255,255,255,0.35);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+}}
+/* Show overlay when checkbox is checked */
+.lb-toggle:checked + label.lb-open-btn + .lb-overlay {{
+  display: flex;
+}}
+@media (max-width: 768px) {{
+  .lb-close {{ top: -44px; }}
+}}
 </style>
 """, unsafe_allow_html=True)
 
 # ---------- TITLE ----------
 st.markdown("<h1 class='app-title'>Catholic Sacramentals</h1>", unsafe_allow_html=True)
 
-# ---------- Collect all image URIs per item ----------
+# ---------- SIDEBAR: Search / View / Categories ----------
+st.sidebar.subheader("Explore")
+view_mode = st.sidebar.radio("View Mode", ["Grid", "Timeline"], index=0)
+search_query = st.sidebar.text_input("Search sacramentals…", "").strip().lower()
+selected_categories = st.sidebar.multiselect("Filter by category", ALL_CATEGORIES, default=[])
+
+def matches_filters(key: str) -> bool:
+    ok_search = True
+    if search_query:
+        text = (humanize(key) + " " + DESC.get(key, "")).lower()
+        ok_search = search_query in text
+    ok_cat = True
+    if selected_categories:
+        item_cats = ITEM_CATEGORIES.get(key, [])
+        ok_cat = any(c in item_cats for c in selected_categories)
+    return ok_search and ok_cat
+
+# Determine display order
+order = ITEM_KEYS if view_mode == "Grid" else [k for k in TIMELINE if k in ITEM_KEYS]
+DISPLAY_KEYS = [k for k in order if matches_filters(k)]
+
+# ---------- Collect all image URIs per item (for potential JS lightbox / future use) ----------
 def uris_for_item(item_key: str):
     paths = multiple_existing(ASSETS_DIR / item_key, max_images=3)
     out = []
@@ -290,58 +469,78 @@ def uris_for_item(item_key: str):
     if not out and ph_file:
         out = [img_data_uri(ph_file, ph_file)]
     return out
-
 all_item_uris = {k: uris_for_item(k) for k in ITEM_KEYS}
 
-# ---------- GRID ----------
-cols = st.columns(3, gap="large")
+# ---------- GRID / TIMELINE ----------
+cols = st.columns(3, gap="large") if view_mode == "Grid" else [st]
 
-for idx, key in enumerate(ITEM_KEYS):
-    col = cols[idx % 3]
+for idx, key in enumerate(DISPLAY_KEYS):
+    col = cols[idx % 3] if view_mode == "Grid" else cols[0]
     with col:
         images = multiple_existing(ASSETS_DIR / key, max_images=3)
         st.markdown('<div class="sac-card">', unsafe_allow_html=True)
+
+        selected_idx = 0
         if images:
-            show_path = images[0]
+            if len(images) > 1:
+                selected_idx = st.radio(
+                    "", list(range(len(images))),
+                    horizontal=True, label_visibility="collapsed", key=f"radio_{key}"
+                )
+                show_path = images[selected_idx]
+            else:
+                show_path = images[0]
             hires_path = hires_for(show_path)
             img_uri = img_data_uri(hires_path, ph_file)
+            tooltip = FACTS.get(key, humanize(key))
             st.markdown(
                 f'<img src="{img_uri}" alt="{humanize(key)}" class="sac-img" '
-                f'data-group="{key}" data-index="0"/>',
+                f'data-group="{key}" data-index="{selected_idx}" data-fact="{tooltip}" title="{tooltip}"/>',
                 unsafe_allow_html=True
             )
-            st.session_state["lightbox_img"] = img_uri
-        st.expander(humanize(key)).write(DESC.get(key, "Description coming soon."))
+        else:
+            if ph_file:
+                ph_uri = img_data_uri(ph_file, ph_file)
+                tooltip = FACTS.get(key, humanize(key))
+                st.markdown(
+                    f'<img src="{ph_uri}" alt="{humanize(key)}" class="sac-img" '
+                    f'data-group="{key}" data-index="0" data-fact="{tooltip}" title="{tooltip}"/>',
+                    unsafe_allow_html=True
+                )
+
+        # Modal Lightbox (CSS-driven): open with a button; enlarge selected image only
+        # Unique per-item checkbox id
+        lb_id = f"lb_{key}"
+        current_img_uri = (img_data_uri(hires_for(images[selected_idx]), ph_file)
+                           if images else (img_data_uri(ph_file, ph_file) if ph_file else ""))
+
+        st.markdown(
+            f'''
+            <input type="checkbox" id="{lb_id}" class="lb-toggle"/>
+            <label for="{lb_id}" class="lb-open-btn">🔍 View {humanize(key)}</label>
+            <div class="lb-overlay">
+              <div class="lb-inner">
+                <label for="{lb_id}" class="lb-close">✕</label>
+                <img class="lb-img" src="{current_img_uri}" alt="{humanize(key)}"/>
+              </div>
+            </div>
+            ''',
+            unsafe_allow_html=True
+        )
+
+        with st.expander(humanize(key), expanded=False):
+            text = DESC.get(key, "Description coming soon.")
+            for para in text.split("\n"):
+                if para.strip():
+                    st.write(para.strip())
+
         st.markdown('</div>', unsafe_allow_html=True)
 
-# ---------- SIDEBAR ----------
-import streamlit.components.v1 as components
-
-st.markdown("""
-<style>
-.sidebar-lightbox-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 6px;
-    font-size: 22px;
-    color: #ddd;
-    transition: color .2s ease;
-}
-.sidebar-lightbox-btn:hover {
-    color: #fff;
-}
-</style>
-""", unsafe_allow_html=True)
-
-with st.sidebar:
-    if "lightbox_img" in st.session_state and st.session_state["lightbox_img"]:
-        img_uri = st.session_state["lightbox_img"]
-        if st.button("👁️", key="view_btn", help="View full size"):
-            components.html(f"""
-            <div style="position:fixed;top:0;left:0;width:100%;height:100%;
-                        background:rgba(0,0,0,0.85);z-index:9999;
-                        display:flex;align-items:center;justify-content:center;">
-                <img src="{img_uri}" style="max-width:90%;max-height:90%;border-radius:8px;"/>
-            </div>
-            """, height=600)
+# ---------- LEGACY LIGHTBOX COMPONENT (kept; harmless). Can be used for future JS needs ----------
+images_json = json.dumps(all_item_uris)
+st.components.v1.html(f"""
+<div id="lightbox-overlay" style="display:none"></div>
+<script>
+// Reserved for future JS-based lightbox; current app uses CSS lightbox.
+</script>
+""", height=10)
