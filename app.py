@@ -47,9 +47,7 @@ The Saint Benedict medal is rich in symbolism and is known as a powerful weapon 
 Saint Michael the Archangel is known as the leader of the heavenly armies and our protector against evil. His medal usually features him wielding a sword or spear, standing triumphantly over Satan, represented as a dragon or serpent. This powerful imagery symbolizes Saint Michael’s victory over evil and his role as a defender of the faithful.
 
 Wearing a Saint Michael medal is a call for his protection against the snares of the devil and a reminder of the spiritual battle between good and evil. It is especially popular among police officers, soldiers, and those in dangerous professions who seek courage and protection in their line of duty.""",
-    "blessed_salt": """Blessed salt, known in the Roman Ritual, was used as early as the 3rd century. 
-    
-Blessed salt is a sacramental in the Catholic tradition, used historically in various rites, including baptism, to symbolize purification and protection. Its origins trace back to early Christianity, where it was associated with blessings and exorcisms, as noted in biblical accounts like the healing of the waters of Jericho by the prophet Elisha.
+    "blessed_salt": """Blessed salt is a sacramental in the Catholic tradition, used historically in various rites, including baptism, to symbolize purification and protection. Its origins trace back to early Christianity, where it was associated with blessings and exorcisms, as noted in biblical accounts like the healing of the waters of Jericho by the prophet Elisha.
 
 Salt was considered a valuable commodity, symbolizing purity and preservation, and was used in sacrifices by the Israelites. By the fourth century, Augustine of Hippo described the use of blessed salt as "visible forms of invisible grace." The Third Council of Carthage in the third century mandated the use of salt for catechumens before baptism. The earliest prayers for blessing salt and water are from Merovingian France, around 600-751 AD.
 
