@@ -44,6 +44,12 @@ On the reverse side, there is a cross and an M intertwined, with two hearts—th
 
 The Saint Benedict medal is rich in symbolism and is known as a powerful weapon in spiritual warfare. It has its own special blessing in the Roman Ritual that includes powerful prayers of exorcism. One side of the medal displays Saint Benedict holding a cross and the Rule of Saint Benedict. These words encircle the saint: “Eius in obitu nostro praesentia muniamur!” (“May we be strengthened by his presence in the hour of our death!”)
 
+The Saint Benedict Medal is a Christian sacramental medal containing symbols and text related to the life of Saint Benedict of Nursia, used by Roman Catholics, Old Catholics, Lutherans, Western Orthodox, Anglicans and Methodists, in the Benedictine Christian tradition, especially votarists and oblates.
+
+This religious object is also a Christian symbol of opening doors and opening difficult paths. Tradition holds that it protects from curses, evil and vice, protects against diseases and protects good health. There are similar exorcism medals and sacramentals in Christian tradition, including from the mendicant Franciscan tradition, an "inheritor" of some Benedictine traditions, called the Cross or Brief of Saint Anthony.
+
+The reverse side of the medal carries the Vade retro satana ('Begone, Satan!'). Sometimes carried as part of a rosary or embedded in a scapular, it is also worn separately.
+
 Saint Michael the Archangel is known as the leader of the heavenly armies and our protector against evil. His medal usually features him wielding a sword or spear, standing triumphantly over Satan, represented as a dragon or serpent. This powerful imagery symbolizes Saint Michael’s victory over evil and his role as a defender of the faithful.
 
 Wearing a Saint Michael medal is a call for his protection against the snares of the devil and a reminder of the spiritual battle between good and evil. It is especially popular among police officers, soldiers, and those in dangerous professions who seek courage and protection in their line of duty.""",
