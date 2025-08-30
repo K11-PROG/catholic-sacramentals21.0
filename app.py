@@ -299,7 +299,7 @@ def hires_for(original_path: Path | None) -> Path | None:
     """
     if not original_path:
         return None
-    stem = original_path.with_suffix("")
+    stem = original_path.with_suffix("")  # drop ext
     suffix_candidates = [f"{stem}", f"{stem}_hires", f"{stem}_full", f"{stem}@2x", f"{stem}_large"]
     for base in suffix_candidates:
         for ext in EXTS:
@@ -381,27 +381,42 @@ div[data-testid="stExpander"] p, div[data-testid="stExpander"] div p {{
   margin-bottom: 0.8rem;
 }}
 
-/* ---- Modal Lightbox (CSS-driven; no JS needed) ---- */
-.lb-toggle {{ display: none; }}
-
-.lb-open-btn {{
-  margin-top: 10px;
-  display: inline-block;
-  background: rgba(255,255,255,0.18);
-  border: 1px solid rgba(255,255,255,0.35);
-  color: #fff;
-  padding: 8px 12px;
-  border-radius: 10px;
-  cursor: pointer;
-  text-decoration: none;
-  font-weight: 600;
+/* ---- Sidebar polish ---- */
+section[data-testid="stSidebar"] > div:first-child {{
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  background: rgba(15,15,25,0.35);
+  border-right: 1px solid rgba(255,255,255,0.15);
 }}
-.lb-open-btn:hover {{
-  filter: brightness(1.06);
+.sidebar-ctl label, .sidebar-ctl div[role="radiogroup"] label {{
+  color: #EDEDED !important;
+}}
+.sidebar-icon-btn button[kind="secondary"] {{
+  width: 100%;
+  font-size: 22px;
+  padding: 6px 10px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.18);
+}}
+.sidebar-icon-btn button[kind="secondary"]:hover {{
+  filter: brightness(1.05);
   transform: translateY(-1px);
 }}
 
-.lb-overlay {{
+.sidebar-group {{
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 14px;
+  padding: 10px 12px;
+  margin-bottom: 14px;
+  background: rgba(255,255,255,0.05);
+}}
+.sidebar-caption {{
+  color: #cfcfcf; font-size: 12px; margin-top: 6px;
+}}
+
+/* ---- Modal Lightbox (CSS + JS) ---- */
+#lightbox-overlay {{
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.85);
@@ -411,7 +426,8 @@ div[data-testid="stExpander"] p, div[data-testid="stExpander"] div p {{
   justify-content: center;
   z-index: 10000;
 }}
-.lb-inner {{
+#lightbox-overlay.show {{ display: flex; }}
+#lightbox-content {{
   position: relative;
   max-width: 96vw;
   max-height: 90vh;
@@ -419,13 +435,29 @@ div[data-testid="stExpander"] p, div[data-testid="stExpander"] div p {{
   align-items: center;
   justify-content: center;
 }}
-.lb-img {{
+#lightbox-img {{
   max-width: 96vw;
   max-height: 90vh;
   border-radius: 10px;
   box-shadow: 0 10px 40px rgba(0,0,0,.6);
 }}
-.lb-close {{
+.lb-btn {{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 28px;
+  line-height: 1;
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.35);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 12px;
+  cursor: pointer;
+  user-select: none;
+}}
+#lb-prev {{ left: -56px; }}
+#lb-next {{ right: -56px; }}
+#lb-close {{
   position: absolute;
   top: -48px;
   right: 0;
@@ -437,13 +469,27 @@ div[data-testid="stExpander"] p, div[data-testid="stExpander"] div p {{
   border-radius: 10px;
   cursor: pointer;
 }}
-/* Show overlay when checkbox is checked */
-.lb-toggle:checked + label.lb-open-btn + .lb-overlay {{
-  display: flex;
-}}
 @media (max-width: 768px) {{
-  .lb-close {{ top: -44px; }}
+  #lb-prev {{ left: -36px; }}
+  #lb-next {{ right: -36px; }}
+  #lb-close {{ top: -44px; }}
 }}
+
+/* Icon-only 'view' button on cards */
+.view-icon-btn {{
+  margin-top: 10px;
+  display: inline-block;
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.35);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 18px;
+}}
+.view-icon-btn:hover {{ filter: brightness(1.06); transform: translateY(-1px); }}
 </style>
 """, unsafe_allow_html=True)
 
@@ -451,11 +497,21 @@ div[data-testid="stExpander"] p, div[data-testid="stExpander"] div p {{
 st.markdown("<h1 class='app-title'>Catholic Sacramentals</h1>", unsafe_allow_html=True)
 
 # ---------- SIDEBAR: Search / View / Categories ----------
-st.sidebar.subheader("Explore")
-view_mode = st.sidebar.radio("View Mode", ["Grid", "Timeline"], index=0)
-search_query = st.sidebar.text_input("Search sacramentals…", "").strip().lower()
-selected_categories = st.sidebar.multiselect("Filter by category", ALL_CATEGORIES, default=[])
+with st.sidebar:
+    st.markdown('<div class="sidebar-group sidebar-ctl">', unsafe_allow_html=True)
+    view_mode = st.radio("View", ["Grid", "Timeline"], index=0, horizontal=True, key="view_mode")
+    st.markdown('</div>', unsafe_allow_html=True)
 
+    st.markdown('<div class="sidebar-group sidebar-ctl">', unsafe_allow_html=True)
+    search_query = st.text_input("Search sacramentals…", "", key="q").strip().lower()
+    st.markdown('</div>', unsafe_allow_html=True)
+
+    st.markdown('<div class="sidebar-group sidebar-ctl">', unsafe_allow_html=True)
+    selected_categories = st.multiselect("Filter by category", ALL_CATEGORIES, default=[], key="cats")
+    st.markdown('<div class="sidebar-caption">Tip: choose 1–3 categories for best results.</div>', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
+
+# Determine visible set
 def matches_filters(key: str) -> bool:
     ok_search = True
     if search_query:
@@ -467,11 +523,10 @@ def matches_filters(key: str) -> bool:
         ok_cat = any(c in item_cats for c in selected_categories)
     return ok_search and ok_cat
 
-# Determine display order
-order = ITEM_KEYS if view_mode == "Grid" else [k for k in TIMELINE if k in ITEM_KEYS]
+order = ITEM_KEYS if st.session_state.get("view_mode", "Grid") == "Grid" else [k for k in TIMELINE if k in ITEM_KEYS]
 DISPLAY_KEYS = [k for k in order if matches_filters(k)]
 
-# ---------- Collect all image URIs per item (for potential JS lightbox / future use) ----------
+# ---------- Collect all image URIs per item (for lightbox & JS) ----------
 def uris_for_item(item_key: str):
     paths = multiple_existing(ASSETS_DIR / item_key, max_images=3)
     out = []
@@ -481,18 +536,37 @@ def uris_for_item(item_key: str):
     if not out and ph_file:
         out = [img_data_uri(ph_file, ph_file)]
     return out
+
 all_item_uris = {k: uris_for_item(k) for k in ITEM_KEYS}
 
+# ---------- SESSION helpers for sidebar 👁️ ----------
+if "current_item" not in st.session_state:
+    st.session_state["current_item"] = None
+if "current_index" not in st.session_state:
+    st.session_state["current_index"] = 0
+if "open_lightbox" not in st.session_state:
+    st.session_state["open_lightbox"] = False
+
+def set_current_item(item_key: str, idx: int):
+    st.session_state["current_item"] = item_key
+    st.session_state["current_index"] = idx
+
 # ---------- GRID / TIMELINE ----------
-cols = st.columns(3, gap="large") if view_mode == "Grid" else [st]
+if st.session_state.get("view_mode") == "Grid":
+    cols = st.columns(3, gap="large")
+else:
+    # Important: use a real container (not `st`) to avoid TypeError in `with col:`
+    single_col = st.container()
+    cols = [single_col]
 
 for idx, key in enumerate(DISPLAY_KEYS):
-    col = cols[idx % 3] if view_mode == "Grid" else cols[0]
+    col = cols[idx % 3] if st.session_state.get("view_mode") == "Grid" else cols[0]
     with col:
         images = multiple_existing(ASSETS_DIR / key, max_images=3)
         st.markdown('<div class="sac-card">', unsafe_allow_html=True)
 
         selected_idx = 0
+        show_path = None
         if images:
             if len(images) > 1:
                 selected_idx = st.radio(
@@ -502,12 +576,23 @@ for idx, key in enumerate(DISPLAY_KEYS):
                 show_path = images[selected_idx]
             else:
                 show_path = images[0]
+
             hires_path = hires_for(show_path)
             img_uri = img_data_uri(hires_path, ph_file)
             tooltip = FACTS.get(key, humanize(key))
             st.markdown(
                 f'<img src="{img_uri}" alt="{humanize(key)}" class="sac-img" '
-                f'data-group="{key}" data-index="{selected_idx}" data-fact="{tooltip}" title="{tooltip}"/>',
+                f'data-group="{key}" data-index="{selected_idx}" title="{tooltip}"/>',
+                unsafe_allow_html=True
+            )
+            # Store "current" for sidebar 👁️
+            set_current_item(key, selected_idx)
+
+            # Icon-only view button on card
+            st.markdown(
+                f'<a class="view-icon-btn" href="javascript:void(0)" '
+                f'onclick="window.__openLightbox(\'{key}\',{selected_idx});" '
+                f'title="View"><span>👁️</span></a>',
                 unsafe_allow_html=True
             )
         else:
@@ -516,29 +601,9 @@ for idx, key in enumerate(DISPLAY_KEYS):
                 tooltip = FACTS.get(key, humanize(key))
                 st.markdown(
                     f'<img src="{ph_uri}" alt="{humanize(key)}" class="sac-img" '
-                    f'data-group="{key}" data-index="0" data-fact="{tooltip}" title="{tooltip}"/>',
+                    f'data-group="{key}" data-index="0" title="{tooltip}"/>',
                     unsafe_allow_html=True
                 )
-
-        # Modal Lightbox (CSS-driven): open with a button; enlarge selected image only
-        # Unique per-item checkbox id
-        lb_id = f"lb_{key}"
-        current_img_uri = (img_data_uri(hires_for(images[selected_idx]), ph_file)
-                           if images else (img_data_uri(ph_file, ph_file) if ph_file else ""))
-
-        st.markdown(
-            f'''
-            <input type="checkbox" id="{lb_id}" class="lb-toggle"/>
-            <label for="{lb_id}" class="lb-open-btn">🔍 View {humanize(key)}</label>
-            <div class="lb-overlay">
-              <div class="lb-inner">
-                <label for="{lb_id}" class="lb-close">✕</label>
-                <img class="lb-img" src="{current_img_uri}" alt="{humanize(key)}"/>
-              </div>
-            </div>
-            ''',
-            unsafe_allow_html=True
-        )
 
         with st.expander(humanize(key), expanded=False):
             text = DESC.get(key, "Description coming soon.")
@@ -548,11 +613,127 @@ for idx, key in enumerate(DISPLAY_KEYS):
 
         st.markdown('</div>', unsafe_allow_html=True)
 
-# ---------- LEGACY LIGHTBOX COMPONENT (kept; harmless). Can be used for future JS needs ----------
+# ---------- SIDEBAR 👁️ (icon-only), shows only when an image is currently available ----------
+with st.sidebar:
+    # Determine if we have an image for the current_item
+    current_item = st.session_state.get("current_item")
+    current_index = st.session_state.get("current_index", 0)
+    has_current_img = bool(current_item and (len(multiple_existing(ASSETS_DIR / current_item, max_images=3)) > 0))
+    st.markdown('<div class="sidebar-group sidebar-icon-btn">', unsafe_allow_html=True)
+    if has_current_img:
+        if st.button("👁️", key="sidebar_view_btn", type="secondary", help="View selected"):
+            st.session_state["open_lightbox"] = True
+    else:
+        # keep layout height consistent; disabled-looking block (no text)
+        st.button("👁️", key="sidebar_view_btn_disabled", type="secondary", help="No image", disabled=True)
+    st.markdown('</div>', unsafe_allow_html=True)
+
+# ---------- LIGHTBOX HTML + JS ----------
 images_json = json.dumps(all_item_uris)
+open_flag = "true" if st.session_state.get("open_lightbox") else "false"
+current_item_js = json.dumps(st.session_state.get("current_item"))
+current_index_js = int(st.session_state.get("current_index", 0))
+
 st.components.v1.html(f"""
-<div id="lightbox-overlay" style="display:none"></div>
+<div id="lightbox-overlay">
+  <div id="lightbox-content">
+    <button id="lb-prev" class="lb-btn" aria-label="Previous">‹</button>
+    <img id="lightbox-img" src="" alt=""/>
+    <button id="lb-next" class="lb-btn" aria-label="Next">›</button>
+    <button id="lb-close" aria-label="Close">✕</button>
+  </div>
+</div>
+
 <script>
-// Reserved for future JS-based lightbox; current app uses CSS lightbox.
+(function() {{
+  const IMAGES = {images_json};
+  const overlay = document.getElementById('lightbox-overlay');
+  const imgEl = document.getElementById('lightbox-img');
+  const btnPrev = document.getElementById('lb-prev');
+  const btnNext = document.getElementById('lb-next');
+  const btnClose = document.getElementById('lb-close');
+
+  let currentGroup = null;
+  let currentIndex = 0;
+
+  function setSrc() {{
+    const list = IMAGES[currentGroup] || [];
+    if (!list.length) return;
+    imgEl.src = list[currentIndex];
+  }}
+
+  function show(group, index) {{
+    const list = IMAGES[group] || [];
+    if (!list.length) return;
+    currentGroup = group;
+    currentIndex = Math.max(0, Math.min(index, list.length - 1));
+    setSrc();
+    overlay.classList.add('show');
+  }}
+
+  function hide() {{
+    overlay.classList.remove('show');
+    setTimeout(() => {{ imgEl.src = ''; }}, 150);
+  }}
+
+  function next() {{
+    if (!currentGroup) return;
+    const list = IMAGES[currentGroup] || [];
+    currentIndex = (currentIndex + 1) % list.length;
+    setSrc();
+  }}
+
+  function prev() {{
+    if (!currentGroup) return;
+    const list = IMAGES[currentGroup] || [];
+    currentIndex = (currentIndex - 1 + list.length) % list.length;
+    setSrc();
+  }}
+
+  // Expose open function for card buttons
+  window.__openLightbox = (group, index) => show(group, index);
+
+  // Click bindings on images (open on click)
+  function bindImages() {{
+    const imgs = document.querySelectorAll('img.sac-img');
+    imgs.forEach((el) => {{
+      el.addEventListener('click', () => {{
+        const group = el.getAttribute('data-group');
+        const idx = parseInt(el.getAttribute('data-index') || '0', 10);
+        show(group, idx);
+      }});
+      // Set tooltip already provided via title attribute
+    }});
+  }}
+
+  // Controls & keyboard & click-outside
+  btnPrev.addEventListener('click', prev);
+  btnNext addEventListener ? prev : null;
+  btnNext.addEventListener('click', next);
+  btnClose.addEventListener('click', hide);
+  overlay.addEventListener('click', (e) => {{ if (e.target === overlay) hide(); }});
+  document.addEventListener('keydown', (e) => {{
+    if (!overlay.classList.contains('show')) return;
+    if (e.key === 'Escape') hide();
+    else if (e.key === 'ArrowRight') next();
+    else if (e.key === 'ArrowLeft') prev();
+  }});
+
+  // Mutation observer to rebind after Streamlit DOM updates
+  bindImages();
+  const mo = new MutationObserver(() => bindImages());
+  mo.observe(document.body, {{ childList: true, subtree: true }});
+
+  // Handle sidebar 👁️ trigger from Python
+  const shouldOpen = {open_flag};
+  const initGroup = {current_item_js};
+  const initIndex = {current_index_js};
+  if (shouldOpen && initGroup && (IMAGES[initGroup]||[]).length) {{
+    show(initGroup, initIndex);
+  }}
+}})();
 </script>
-""", height=10)
+""", height=0)
+
+# Reset the sidebar open flag after rendering, so it only opens once per click
+st.session_state["open_lightbox"] = False
