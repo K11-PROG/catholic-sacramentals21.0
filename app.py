@@ -172,7 +172,13 @@ During Medieval times, monstrances were more varied in form than contemporary on
 In the centre of the sunburst, the monstrance normally has a small round glass the size of a Host, through which the Blessed Sacrament can be seen. Behind this glass is a round container made of glass and gilded metal, called a lunette. This holds the Host securely in place. When not in the monstrance, the Host in its luna is placed in a special standing container, called a standing pyx, in the Tabernacle.
 
 Often gilded and radiant, they emphasize Christ’s Real Presence and became common after Corpus Christi was established in 1264.""",
-    "eucharistic_host": """The Eucharistic Host, unleavened bread, becomes the Body of Christ at the consecration.
+    "eucharistic_host": """The Eucharistic host, also known as the sacramental bread, has its roots in the Last Supper, where Jesus shared bread and wine with his disciples. This event is described in the New Testament, particularly in the accounts of the Last Supper, where Jesus broke bread and said, "This is my body which is for you" (1 Corinthians 11:24).
+
+The term "host" comes from the Latin word hostia, meaning "sacrificial victim." This reflects the understanding of the Eucharist as a sacrificial act, commemorating Christ's death. The word is used to describe the bread both before and after it is consecrated during the Eucharistic celebration. Western Christianity typically uses unleavened bread for the Eucharist, which is thin and round.
+
+In the Roman Catholic tradition, specific guidelines dictate how the host must be made. The bread must be made from unadulterated wheat flour and water, ensuring it is suitable for consecration. Many hosts are produced by religious communities, such as nuns, who follow these guidelines to create the bread used in Mass.
+
+The Eucharistic host is a significant element in Christian worship, symbolizing the body of Christ. Its origins are deeply tied to the Last Supper and the sacrificial nature of the Eucharist, with specific traditions surrounding its preparation and use across different Christian denominations.
 
 Reserved for adoration and Communion, the Host has been central since the Last Supper and was solemnly elevated in the Mass by the 12th century."""
 }
